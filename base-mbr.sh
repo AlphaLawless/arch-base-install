@@ -2,7 +2,8 @@
 
 ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 hwclock --systohc
-
+sed -i '393s/.//' /etc/locale.gen # Line 393 pt_BR.UTF-8 UTF-8
+# sed -i '177s/.//' /etc/locale.gen # Line 177 en_US.UTF-8 UTF-8
 locale-gen
 echo "LANG=pt_BR.UTF-8" >> /etc/locale.conf
 echo "KEYMAP=br-abnt2" >> /etc/vconsole.conf
@@ -45,7 +46,6 @@ useradd -m -g users -G wheel alphaarch
 # useradd -m alphaarch
 # echo alphaarch:password | chpasswd
 # usermod -aG libvirt alphaarch
-
 
 echo "alphaarch ALL=(ALL) ALL" >> /etc/sudoers.d/alphaarch
 
