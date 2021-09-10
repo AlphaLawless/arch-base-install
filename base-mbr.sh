@@ -2,8 +2,7 @@
 
 ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 hwclock --systohc
-sed -i '393s/.//' /etc/locale.gen # Line 393 pt_BR.UTF-8 UTF-8
-# sed -i '177s/.//' /etc/locale.gen # Line 177 en_US.UTF-8 UTF-8
+sed -i '393s/.//' /etc/locale.gen # uncomment in line 393 pt_BR.UTF-8 UTF-8
 locale-gen
 echo "LANG=pt_BR.UTF-8" >> /etc/locale.conf
 echo "KEYMAP=br-abnt2" >> /etc/vconsole.conf
@@ -13,14 +12,26 @@ echo "::1       localhost.localdomain localhost" >> /etc/hosts
 echo "127.0.1.1 alphaarch.localdomain alphaarch" >> /etc/hosts
 echo root:password | chpasswd
 
+# For English speakers and native.
+
+# ln -sf /usr/share/zoneinfo/Region/City /etc/localtime # Set your Region and City here 
+# sed -i '177s/.//' /etc/locale.gen # uncomment in line 177 for en_US.UTF-8 UTF-8
+# echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+# echo "KEYMAP=de-latin1" >> /etc/vconsole.conf
+# echo "archpc" >> /etc/hostname
+# echo "127.0.0.1 localhost" >> /etc/hosts
+# echo "::1       localhost" >> /etc/hosts
+# echo "127.0.1.1 archpc.localdomain archpc" >> /etc/hosts
+# echo root:password | chpasswd
+
 # In this part you can remove packages that you are not going to use.
 # You can remove the tlp package if you are installing on a desktop or vm.
 
-pacman -S --noconfirm grub os-prober networkmanager network-manager-applet dialog wpa_supplicant wireless_tools dosftools mtools linux-headers openssh reflector sof-firmware dnsmasq cups ntfs-3g bluez bluez-utils tlp
+pacman -S --noconfirm grub os-prober networkmanager network-manager-applet dialog wpa_supplicant wireless_tools dosfstools mtools linux-headers openssh reflector sof-firmware dnsmasq cups ntfs-3g tlp
 
 # Soft package
 
-#pacman -S --noconfirm grub os-prober networkmanager network-manager-applet dialog wpa_supplicant wireless_tools openssh reflector tlp
+# pacman -S --noconfirm grub os-prober networkmanager network-manager-applet dialog wpa_supplicant wireless_tools openssh reflector tlp
 
 # pacman -S --noconfirm nvidia nivida-utils nvidia-settings
 # pacman -S --noconfirm xf86-video-intel
@@ -39,10 +50,10 @@ systemctl enable tlp # you can comment this command out if you didn't install tl
 
 # As said above, you can be replacing "alphaarch" for a name of your choose.
 
-useradd -m -g users -G wheel alphaarch
+# OPTION 1
+# useradd -m -g users -G wheel alphaarch
 
-# If you prefer, you can choose this option to generate a new user. Uncomment this ootion and comment the line above.
-
+# OPTION 2
 # useradd -m alphaarch
 # echo alphaarch:password | chpasswd
 # usermod -aG libvirt alphaarch
