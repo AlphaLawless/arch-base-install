@@ -61,5 +61,5 @@ systemctl enable tlp # you can comment this command out if you didn't install tl
 
 echo "alphaarch ALL=(ALL) ALL" >> /etc/sudoers.d/alphaarch
 
-printf "\e[1;132mDone! Type exit, umount -a and reboot or umount -R and shutdown -h now.\e[0m"
+printf "\e[1;132mDone! Type exit, umount -a and reboot or umount -R /mnt and shutdown -h now.\e[0m"
 
