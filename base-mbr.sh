@@ -10,7 +10,7 @@ echo "alphaarch" >> /etc/hostname # You may be replacing "alphaarch" for a name 
 echo "127.0.0.1 localhost.localdomain localhost" >> /etc/hosts
 echo "::1       localhost.localdomain localhost" >> /etc/hosts
 echo "127.0.1.1 alphaarch.localdomain alphaarch" >> /etc/hosts
-echo root:password | chpasswd
+echo root:password | chpasswd # Change password of your choose.
 
 # For English speakers and native.
 
@@ -56,7 +56,7 @@ systemctl enable tlp # you can comment this command out if you didn't install tl
 
 # OPTION 2
 # useradd -m alphaarch
-# echo alphaarch:password | chpasswd
+# echo alphaarch:password | chpasswd # Change password of your choose.
 # usermod -aG libvirt alphaarch
 
 echo "alphaarch ALL=(ALL) ALL" >> /etc/sudoers.d/alphaarch
