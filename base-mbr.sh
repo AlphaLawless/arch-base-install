@@ -14,7 +14,7 @@ echo root:password | chpasswd
 
 # For English speakers and native.
 
-# ln -sf /usr/share/zoneinfo/Region/City /etc/localtime # Set your Region and City here 
+# ln -sf /usr/share/zoneinfo/Region/City /etc/localtime # Set your Region and City here
 # sed -i '177s/.//' /etc/locale.gen # uncomment in line 177 for en_US.UTF-8 UTF-8
 # echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 # echo "KEYMAP=de-latin1" >> /etc/vconsole.conf
@@ -27,7 +27,7 @@ echo root:password | chpasswd
 # In this part you can remove packages that you are not going to use.
 # You can remove the tlp package if you are installing on a desktop or vm.
 
-pacman -S --noconfirm grub os-prober networkmanager network-manager-applet dialog wpa_supplicant wireless_tools dosfstools mtools linux-headers openssh reflector sof-firmware dnsmasq cups ntfs-3g tlp
+pacman -S --noconfirm grub os-prober networkmanager network-manager-applet dialog wpa_supplicant wireless_tools dosfstools mtools linux-headers openssh reflector sof-firmware dnsmasq pulseaudio alsa-utils virt-manager qemu qemu-arch-extra acpi acpi_call cups ntfs-3g tlp
 
 # Soft package
 
@@ -46,6 +46,7 @@ systemctl enable sshd
 systemctl enable reflector.timer
 systemctl enable cups.service
 systemctl enable libvirtd
+systemctl enable acpid
 systemctl enable tlp # you can comment this command out if you didn't install tlp, sse above
 
 # As said above, you can be replacing "alphaarch" for a name of your choose.
@@ -60,4 +61,4 @@ systemctl enable tlp # you can comment this command out if you didn't install tl
 
 echo "alphaarch ALL=(ALL) ALL" >> /etc/sudoers.d/alphaarch
 
-printf "\e[1;132mDone! Type exit, umount -a and reboot.\e[0m"
+printf "\e[1;132mDone! Type exit, umount -a and reboot or umount -R and shutdown -h now.\e[0m"
