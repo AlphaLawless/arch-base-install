@@ -51,13 +51,9 @@ systemctl enable tlp # you can comment this command out if you didn't install tl
 
 # As said above, you can be replacing "alphaarch" for a name of your choose.
 
-# OPTION 1
-# useradd -m -g users -G wheel alphaarch
-
-# OPTION 2
-# useradd -m alphaarch
-# echo alphaarch:password | chpasswd # Change password of your choose.
-# usermod -aG libvirt alphaarch
+useradd -m alphaarch
+echo alphaarch:password | chpasswd # Change password of your choose.
+usermod -aG libvirt alphaarch
 
 echo "alphaarch ALL=(ALL) ALL" >> /etc/sudoers.d/alphaarch
 
