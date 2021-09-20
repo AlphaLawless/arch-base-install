@@ -37,7 +37,7 @@ pacman -S --noconfirm grub base-devel os-prober efibootmgr networkmanager networ
 # pacman -S --noconfirm xf86-video-intel
 # pacman -S --noconfirm xf86-video-amdgpu
 
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB # replace sd"x" with your disk name, not the partition!
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 echo "GRUB_DISABLE_OS_PROBER=false" >> /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
@@ -51,13 +51,9 @@ systemctl enable tlp # you can comment this command out if you didn't install tl
 
 # As said above, you can be replacing "alphaarch" for a name of your choose.
 
-# OPTION 1
-# useradd -m -g users -G wheel alphaarch
-
-# OPTION 2
-# useradd -m alphaarch # Change password of your choose.
-# echo alphaarch:password | chpasswd
-# usermod -aG libvirt alphaarch
+useradd -m alphaarch
+echo alphaarch:password | chpasswd # Change password of your choose.
+usermod -aG libvirt alphaarch
 
 echo "alphaarch ALL=(ALL) ALL" >> /etc/sudoers.d/alphaarch
 
