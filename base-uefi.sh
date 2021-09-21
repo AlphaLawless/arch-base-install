@@ -27,7 +27,7 @@ echo root:password | chpasswd # Change password of your choose.
 # In this part you can remove packages that you are not going to use.
 # You can remove the tlp package if you are installing on a desktop or vm.
 
-pacman -S --noconfirm grub base-devel os-prober efibootmgr networkmanager network-manager-applet dialog wpa_supplicant xdg-user-dir xdg-utils wireless_tools dosfstools mtools linux-headers openssh reflector sof-firmware dnsmasq pulseaudio alsa-utils virt-manager qemu qemu-arch-extra edk2-ovmf acpi acpi_call cups ntfs-3g tlp
+pacman -S --noconfirm grub base-devel os-prober efibootmgr networkmanager network-manager-applet dialog wpa_supplicant xdg-user-dirs xdg-utils wireless_tools dosfstools mtools linux-headers openssh reflector sof-firmware dnsmasq pulseaudio alsa-utils virt-manager qemu qemu-arch-extra edk2-ovmf acpi acpi_call cups ntfs-3g tlp
 
 # Soft package
 
