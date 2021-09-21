@@ -27,7 +27,7 @@ echo root:password | chpasswd # Change password of your choose.
 # In this part you can remove packages that you are not going to use.
 # You can remove the tlp package if you are installing on a desktop or vm.
 
-pacman -S --noconfirm grub base-devel os-prober efibootmgr networkmanager network-manager-applet dialog wpa_supplicant xdg-user-dirs xdg-utils wireless_tools dosfstools mtools linux-headers openssh reflector sof-firmware dnsmasq pulseaudio alsa-utils virt-manager qemu qemu-arch-extra edk2-ovmf acpi acpi_call cups ntfs-3g tlp
+pacman -S --noconfirm grub base-devel os-prober efibootmgr networkmanager network-manager-applet dialog wpa_supplicant xdg-user-dirs xdg-utils wireless_tools dosfstools mtools linux-headers avahi openssh openbsd-netcat ipset iptables-nft firewalld nss-mdns dnsutils vde2 nfs-utils reflector sof-firmware dnsmasq pulseaudio alsa-utils virt-manager qemu qemu-arch-extra edk2-ovmf acpi acpi_call cups ntfs-3g tlp
 
 # Soft package
 
@@ -45,8 +45,11 @@ systemctl enable NetworkManager
 systemctl enable sshd
 systemctl enable reflector.timer
 systemctl enable cups.service
+systemctl enable avahi-daemon
+systemctl enable firewalld
 systemctl enable libvirtd
 systemctl enable acpid
+systemctl enable fstrim.timer
 systemctl enable tlp # you can comment this command out if you didn't install tlp, sse above
 
 # As said above, you can be replacing "alphaarch" for a name of your choose.
