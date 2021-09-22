@@ -1,6 +1,13 @@
 #!/bin/bash
 
+sudo timedatectl set-ntp true
+sudo hwclock --systohc
+
 sudo pacman -Syy
+
+sudo firewall-cmd --add-port=1025-65535/tcp --permanent
+sudo firewall-cmd --add-port=1025-65535/udp --permanent
+sudo firewall-cmd --reload
 
 # git clone https://aur.archlinux.org/paru-bin
 # cd paru/bin
@@ -28,7 +35,11 @@ echo "\n[!] MAIN PACKAGES"
 
 sleep 5
 
-sudo pacman -S --noconfirm xorg xorg-xrandr bspwm sxhkd dunst rofi dmenu firefox kitty picom unclutter feh lightdm light-locker nautilus arandr pulseaudio-alsa pavucontrol arc-gtk-theme arc-icon-theme vlc xclip pacman-contrib
+sudo pacman -S --noconfirm xorg bspwm sxhkd dunst rofi dmenu brave kitty picom unclutter feh lightdm light-locker nautilus arandr pulseaudio-alsa pavucontrol arc-gtk-theme arc-icon-theme vlc xclip pacman-contrib
+
+# git clone https://aur.archlinux.org/librewolf-bin.git librewolf
+# cd librewolf
+# makepkg -si
 
 echo "\n[*] INSTALLING FONTS...\n"
 
