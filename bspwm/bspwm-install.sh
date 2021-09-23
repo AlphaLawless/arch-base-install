@@ -19,12 +19,12 @@ sudo firewall-cmd --reload
 if [[ $aur_paru = true ]]; then
   cd /tmp
   git clone https://aur.archlinux.org/paru-bin.git
-  cd paru-bin/;makepkg -si --noconfirm
+  cd paru-bin/;sudo makepkg -si --noconfirm
 fi
 
 if [[ $aur_pikaur = true ]]; then
   git clone https://aur.archlinux.org/pikaur.git
-  cd pikaur/;makepkg -si --noconfirm
+  cd pikaur/;sudo makepkg -si --noconfirm
   sleep 5
   sudo pikaur -S --noconfirm polybar
   sudo pikaur -S --noconfirm nerd-fonts-iosevka
@@ -47,16 +47,16 @@ sudo pacman -S --noconfirm xorg bspwm sxhkd dunst rofi dmenu firefox kitty neofe
 if [[ $install_librewolf = true ]]; then
   cd /tmp
   git clone https://aur.archlinux.org/librewolf-bin.git librewolf
-  cd librewolf;makepkg -si --noconfirm
+  cd librewolf;sudo makepkg -si --noconfirm
 fi
 
 if [[ $install_ly = true ]]; then
   cd /tmp
   git clone https://aur.archlinux.org/ly
-  cd ly;makepkg -si
+  cd ly;sudo makepkg -si
   sudo systemctl enable ly.service
 else
-  sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greater-settings
+  sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
   sleep 5
   sudo systemctl enable lightdm
 fi
