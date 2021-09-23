@@ -29,7 +29,7 @@ if [[ $aur_pikaur = true ]]; then
   sleep 5
   pikaur -S --noconfirm polybar
   pikaur -S --noconfirm nerd-fonts-iosevka
-  pikaur -S --noconfirm tt-icomoon-feather
+  pikaur -S --noconfirm ttf-icomoon-feather
 fi
 
 
