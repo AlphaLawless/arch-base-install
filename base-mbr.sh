@@ -28,7 +28,7 @@ echo root:password | chpasswd # Change password of your choose.
 # You can remove the tlp package if you are installing on a desktop or vm.
 # Remove the --noconfirm to have the right to choose which package will pass.
 
-pacman -S --noconfirm grub base-devel os-prober networkmanager network-manager-applet dialog wpa_supplicant xdg-user-dirs xdg-utils wireless_tools dosfstools mtools linux-headers avahi openssh openbsd-netcat ipset iptables-nft firewalld nss-mdns dnsutils vde2 nfs-utils bash-completion reflector sof-firmware dnsmasq pulseaudio alsa-utils virt-manager qemu qemu-arch-extra edk2-ovmf acpi acpi_call cups ntfs-3g tlp
+pacman -S --noconfirm grub base-devel os-prober networkmanager network-manager-applet dialog wpa_supplicant xdg-user-dirs xdg-utils wireless_tools dosfstools mtools linux-headers avahi openssh openbsd-netcat ipset iptables-nft firewalld nss-mdns dnsutils vde2 nfs-utils bash-completion reflector sof-firmware dnsmasq pulseaudio alsa-utils virt-manager qemu qemu-arch-extra edk2-ovmf acpi acpi_call cups ntfs-3g terminus-font tlp
 
 # Soft package
 
