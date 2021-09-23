@@ -26,9 +26,9 @@ if [[ $aur_pikaur = true ]]; then
   git clone https://aur.archlinux.org/pikaur.git
   cd pikaur/;makepkg -si --noconfirm
   sleep 5
-  pikaur -S --noconfirm polybar
-  pikaur -S --noconfirm nerd-fonts-iosevka
-  pikaur -S --noconfirm tt-icomoon-feather
+  sudo pikaur -S --noconfirm polybar
+  sudo pikaur -S --noconfirm nerd-fonts-iosevka
+  sudo pikaur -S --noconfirm tt-icomoon-feather
 fi
 
 
