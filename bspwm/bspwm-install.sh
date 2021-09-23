@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Options
-#
+# Choose whether or not a particular package. Just toggle between TRUE or FALSE.
 install_ly=true
 install_librewolf=true
 aur_paru=false
@@ -23,6 +23,7 @@ if [[ $aur_paru = true ]]; then
 fi
 
 if [[ $aur_pikaur = true ]]; then
+  cd /tmp
   git clone https://aur.archlinux.org/pikaur.git
   cd pikaur/;sudo makepkg -si --noconfirm
   sleep 5
