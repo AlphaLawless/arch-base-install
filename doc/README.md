@@ -1,7 +1,7 @@
 # Arch Linux Base Install
 * [en-US](../README.md)
 
-Antes de iniciar com os scripts, gostaria de agradecer você por ter chegado esse repositório. Primeiramente, você precisa certificar de ter feito todas as etapas padrões de instalação do **Arch Linux**. Siga as instruções do [guia](https://wiki.archlinux.org/title/Installation_guide_(Portugu%C3%AAs)) da archwiki, afinal esse guia foi baseado nele.
+Antes de iniciar com os scripts, gostaria de agradecer você por ter chegado nesse repositório. Primeiramente, você precisa certificar de ter feito todas as etapas padrões de instalação do **Arch Linux**. Siga as instruções do [guia](https://wiki.archlinux.org/title/Installation_guide_(Portugu%C3%AAs)) da archwiki, afinal esse guia foi baseado nele.
 
 Caso queira saber como eu faço a montagem do meu arch linux, siga as instruções! Caso queira saber apenas da instalação dos scripts, [clique aqui](./README.md#Instação-dos-scripts)! 
 
