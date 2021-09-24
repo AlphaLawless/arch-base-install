@@ -3,7 +3,7 @@
 
 Antes de iniciar com os scripts, gostaria de agradecer você por ter chegado esse repositório. Primeiramente, você precisa certificar de ter feito todas as etapas padrões de instalação do **Arch Linux**. Siga as instruções do [guia](https://wiki.archlinux.org/title/Installation_guide_(Portugu%C3%AAs)) da archwiki, afinal esse guia foi baseado nele.
 
-Caso queira saber como eu faço a montagem do meu arch linux, siga as instruções! Caso queira saber apenas da instalação dos scripts, [clique aqui](./READMEpt.md#Instalação_dos_scripts)! 
+Caso queira saber como eu faço a montagem do meu arch linux, siga as instruções! Caso queira saber apenas da instalação dos scripts, [clique aqui](./README.md#Instalação_dos_scripts)! 
 
 ## Instalando o Arch Linux
 
@@ -56,11 +56,11 @@ ping archlinux.org
 ```
 **A partir daqui eu separei em dois caminhos dependendo do seu sistema. Leia com atenção!**
 ### Verificar o modo de inicialização
-Antes de começar a montar partições e configurar nossa rede. Precisamos ter certeza que estamos no modo [UEFI](./READMEpt.md#UEFI). Digite no terminal:
+Antes de começar a montar partições e configurar nossa rede. Precisamos ter certeza que estamos no modo [UEFI](./README.md#UEFI). Digite no terminal:
 ```sh
 ls /sys/firmware/efi/efivars
 ```
-Tudo certo podemos começar! Agora, caso o comando mostre erro no diretório, significa que o sistema foi inicializado no modo [BIOS Legacy](./READMEpt.md#Bios_Legacy).
+Tudo certo podemos começar! Agora, caso o comando mostre erro no diretório, significa que o sistema foi inicializado no modo [BIOS Legacy](./README.md#Bios_Legacy).
 ## UEFI
 
 ### Partição dos Discos
@@ -116,7 +116,7 @@ mount /dev/partição_de_sistema_efi
 ```
 swapon /dev/partição_swap
 ```
-Montada as partições você pode ir para a parte final de [instação](./READMEpt.md#Instação).
+Montada as partições você pode ir para a parte final de [instação](./README.md#Instação).
 
 ## BIOS Legacy
 Eu particularmente particiono o sistema BIOS Legacy utilizando a pseuda interface gráfica `cfdisk /dev/partição`, com o seguinte layout:
@@ -168,7 +168,7 @@ swapon /dev/partição_swap
 ```
 *OBS: Caso você tenha percebido o sistema BIOS Legacy não precisa ser montado, apenas formatado. De resto, o próprio sistema vai concluir de forma dinâmica.*
 
-Montada as partições você pode ir para a parte final de [instação](./READMEpt.md#Instação).
+Montada as partições você pode ir para a parte final de [instação](./README.md#Instação).
 
 ## Instalação
 Caso você tenha uma internet lenta e não tem conhecimento de [espelhos](https://wiki.archlinux.org/title/Installation_guide_(Português)#Selecionar_os_espelhos)(*mirrors*) recomendo ler sobre no archlinux.
@@ -192,7 +192,7 @@ Pronto! Agora podemos mudar para a raiz do novo sistema:
 arch-chroot /mnt
 ```
 ## Instalação dos scripts
-Todas as instruções podem ser encontradas no [INSTALL.md](./INSTALLpt.md)
+Todas as instruções podem ser encontradas no [INSTALL.md](./INSTALL.md)
 
 ## Créditos 
 
