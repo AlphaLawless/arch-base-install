@@ -12,7 +12,9 @@ echo ${hostname} >> /etc/hostname # You may be replacing "alphaarch" for a name 
 echo "127.0.0.1 localhost.localdomain localhost" >> /etc/hosts
 echo "::1       localhost.localdomain localhost" >> /etc/hosts
 echo "127.0.1.1 ${hostname}.localdomain ${hostname}" >> /etc/hosts
-echo root:password | chpasswd # Change password of your choose.
+echo "Digite uma senha para a root: "
+read password
+echo root:${password} | chpasswd # Change password of your choose.
 
 # For English speakers and native.
 
