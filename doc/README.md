@@ -116,7 +116,7 @@ mount /dev/partição_de_sistema_efi
 ```
 swapon /dev/partição_swap
 ```
-Montada as partições você pode ir para a parte final de [instação](./README.md#Instação).
+Montada as partições você pode ir para a parte final de [instação](./README.md#Instalação).
 
 ## BIOS Legacy
 Eu particularmente particiono o sistema BIOS Legacy utilizando a pseuda interface gráfica `cfdisk /dev/partição`, com o seguinte layout:
@@ -168,7 +168,7 @@ swapon /dev/partição_swap
 ```
 *OBS: Caso você tenha percebido o sistema BIOS Legacy não precisa ser montado, apenas formatado. De resto, o próprio sistema vai concluir de forma dinâmica.*
 
-Montada as partições você pode ir para a parte final de [instação](./README.md#Instação).
+Montada as partições você pode ir para a parte final de [instação](./README.md#Instalação).
 
 ## Instalação
 Caso você tenha uma internet lenta e não tem conhecimento de [espelhos](https://wiki.archlinux.org/title/Installation_guide_(Português)#Selecionar_os_espelhos)(*mirrors*) recomendo ler sobre no archlinux.
