@@ -6,10 +6,12 @@ sed -i '393s/.//' /etc/locale.gen # uncomment in line 393 pt_BR.UTF-8 UTF-8
 locale-gen
 echo "LANG=pt_BR.UTF-8" >> /etc/locale.conf
 echo "KEYMAP=br-abnt2" >> /etc/vconsole.conf
-echo "alphaarch" >> /etc/hostname # You may be replacing "alphaarch" for a name of your choice.
+echo "Qual Hostname da maquina? "
+read hostname
+echo ${hostname} >> /etc/hostname # You may be replacing "alphaarch" for a name of your choice.
 echo "127.0.0.1 localhost.localdomain localhost" >> /etc/hosts
 echo "::1       localhost.localdomain localhost" >> /etc/hosts
-echo "127.0.1.1 alphaarch.localdomain alphaarch" >> /etc/hosts
+echo "127.0.1.1 ${hostname}.localdomain ${hostname}" >> /etc/hosts
 echo root:password | chpasswd # Change password of your choose.
 
 # For English speakers and native.
