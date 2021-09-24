@@ -3,7 +3,7 @@
 
 Before you get start with the scripts, I would like to thank you for coming to this repository. First, you need to certificate that you have done all installation standard process from the [ArchWiki Guide](https://wiki.archlinux.org/title/Installation_guide) 
 
-If you want to know how I build my Arch linux, follow the instructions! If you just want to know about the scripts installarion, [click here](./README.md#Scripts-installations)!
+If you want to know how I build my Arch linux, follow the instructions! If you just want to know about the scripts installation, [click here](./README.md#Scripts-installations)!
 
 ## Installing Arch Linux
 
@@ -45,7 +45,7 @@ How do I use Wi-Fi network here are the steps:
 ```
 Type your network password and exit the `iwctl` typing `exit`.
 
-For more information read [rfkill](https://wiki.archlinux.org/title/Network_configuration/Wireless#Rfkill_caveat) and [Conectar à Internet](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet).
+For more information read [rfkill](https://wiki.archlinux.org/title/Network_configuration/Wireless#Rfkill_caveat) and [Connect to the internet](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet).
 
 
 Confirming you are connected:
