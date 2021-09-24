@@ -109,13 +109,13 @@ mount /dev/home_partition /mnt/home
 ```
 * Mounting efi boot:
 ```
-mount /dev/efi_boot_system
+mount /dev/efi_boot_system /mnt/boot/efi
 ```
 * Finally, enabling swapt:
 ```
 swapon /dev/swap_partition
 ```
-With the partitions all mounted you can proceed to the final part of the [installation](./README.md#Installation	).
+With the partitions all mounted you can proceed to the final part of the [installation](./README.md#Installation).
 
 ## BIOS Legacy
 Personally, I like to partition my BIOS Legacy system using a pseudo graphical interface `cfdisk /dev/partition`, with the following layout:
@@ -182,7 +182,7 @@ I hope you got a coffee because this can take some time (or not so much).
 Ending it, let's get to the final step before `arch-chroot` and run the scripts! 
 
 ### Fstab
-Generate a [fstab](https://wiki.archlinux.org/title/Fstab) (use -U or -L to choose between [UUID](https://wiki.archlinux.org/title/Persistent_block_device_naming#by-uuid) and labels, respectively)
+Generate a [fstab](https://wiki.archlinux.org/title/Fstab) (use -U or -L to choose between [UUID](https://wiki.archlinux.org/title/Persistent_block_device_naming#by-uuid) and labels, respectively):
 ```
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
@@ -199,4 +199,4 @@ Great amount of arch linux installation I got from several youtube videos from [
 
 ## Licence
 
-[MIT License](../LICENSE)
+[MIT License](./LICENSE)
