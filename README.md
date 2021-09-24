@@ -1,7 +1,4 @@
 # Arch Linux Base Install
-<<<<<<< HEAD
-* [pt-BR](./doc/pt_BR.md)
-=======
 * [pt-BR](https://github.com/AlphaLawless/arch-base-install/blob/main/doc/README.md)
 
 Before you get start with the scripts, I would like to thank you for coming to this repository. First, you need to certificate that you have done all installation standard process from the [ArchWiki Guide](https://wiki.archlinux.org/title/Installation_guide) 
@@ -195,7 +192,6 @@ arch-chroot /mnt
 ```
 ## Scripts installation
 All instruction might be found in [INSTALL.md](./INSTALL.md).
->>>>>>> bbe79ce4f3f5bc2c0d460ab0d0138d810177458e
 
 ## Credits
 
