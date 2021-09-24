@@ -110,7 +110,7 @@ mount /dev/partição_home /mnt/home
 ```
 * Montando o boot efi:
 ```
-mount /dev/partição_de_sistema_efi
+mount /dev/partição_de_sistema_efi /mnt/boot/efi
 ```
 * Por fim habilitando o swap:
 ```
