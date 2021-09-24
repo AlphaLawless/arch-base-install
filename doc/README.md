@@ -3,7 +3,7 @@
 
 Antes de iniciar com os scripts, gostaria de agradecer você por ter chegado esse repositório. Primeiramente, você precisa certificar de ter feito todas as etapas padrões de instalação do **Arch Linux**. Siga as instruções do [guia](https://wiki.archlinux.org/title/Installation_guide_(Portugu%C3%AAs)) da archwiki, afinal esse guia foi baseado nele.
 
-Caso queira saber como eu faço a montagem do meu arch linux, siga as instruções! Caso queira saber apenas da instalação dos scripts, [clique aqui](./README.md#Instalação_dos_scripts)! 
+Caso queira saber como eu faço a montagem do meu arch linux, siga as instruções! Caso queira saber apenas da instalação dos scripts, [clique aqui](./README.md#Instação-dos-scripts)! 
 
 ## Instalando o Arch Linux
 
@@ -60,7 +60,7 @@ Antes de começar a montar partições e configurar nossa rede. Precisamos ter c
 ```sh
 ls /sys/firmware/efi/efivars
 ```
-Tudo certo podemos começar! Agora, caso o comando mostre erro no diretório, significa que o sistema foi inicializado no modo [BIOS Legacy](./README.md#Bios_Legacy).
+Tudo certo podemos começar! Agora, caso o comando mostre erro no diretório, significa que o sistema foi inicializado no modo [BIOS Legacy](./README.md#BIOS-Legacy).
 ## UEFI
 
 ### Partição dos Discos
