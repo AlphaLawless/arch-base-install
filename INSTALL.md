@@ -1,6 +1,6 @@
 # Installation Guide
 
-* [pt-BR](./doc/INSTALLpt.md)
+* [pt-BR](./doc/INSTALL.md)
 
 ## Base scripts
 
