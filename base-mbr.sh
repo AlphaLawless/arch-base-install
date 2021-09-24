@@ -1,28 +1,60 @@
 #!/bin/bash
 
-ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
-hwclock --systohc
-sed -i '393s/.//' /etc/locale.gen # uncomment in line 393 pt_BR.UTF-8 UTF-8
-locale-gen
-echo "LANG=pt_BR.UTF-8" >> /etc/locale.conf
-echo "KEYMAP=br-abnt2" >> /etc/vconsole.conf
-echo "alphaarch" >> /etc/hostname # You may be replacing "alphaarch" for a name of your choice.
-echo "127.0.0.1 localhost.localdomain localhost" >> /etc/hosts
-echo "::1       localhost.localdomain localhost" >> /etc/hosts
-echo "127.0.1.1 alphaarch.localdomain alphaarch" >> /etc/hosts
-echo root:password | chpasswd # Change password of your choose.
+body() {
+	cat <<- EOF
+		[*] What's the language you want to start?
 
-# For English speakers and native.
+		[*] Choose one -
+		[1] pt-BR.
+		[2] en-US
+    .
+	EOF
 
-# ln -sf /usr/share/zoneinfo/Region/City /etc/localtime # Set your Region and City here
-# sed -i '177s/.//' /etc/locale.gen # uncomment in line 177 for en_US.UTF-8 UTF-8
-# echo "LANG=en_US.UTF-8" >> /etc/locale.conf
-# echo "KEYMAP=de-latin1" >> /etc/vconsole.conf
-# echo "archpc" >> /etc/hostname
-# echo "127.0.0.1 localhost" >> /etc/hosts
-# echo "::1       localhost" >> /etc/hosts
-# echo "127.0.1.1 archpc.localdomain archpc" >> /etc/hosts
-# echo root:password | chpasswd
+  read -p "[?] Select Option, typing 1 or 2: "
+
+  if [[ $REPLY == "1" ]]; then
+    ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+    hwclock --systohc
+    sed -i '393s/.//' /etc/locale.gen # uncomment in line 393 pt_BR.UTF-8 UTF-8
+    locale-gen
+    echo "LANG=pt_BR.UTF-8" >> /etc/locale.conf
+    echo "KEYMAP=br-abnt2" >> /etc/vconsole.conf
+    echo "\nQual o hostname da máquina? "
+    read hostname
+    echo ${hostname} >> /etc/hostname
+    echo "127.0.0.1 localhost.localdomain localhost" >> /etc/hosts
+    echo "::1       localhost.localdomain localhost" >> /etc/hosts
+    echo "127.0.1.1 ${hostname}.localdomain ${hostname}" >> /etc/hosts
+    echo "\nDigite uma senha para a root: "
+    read password
+    echo root:${password} | chpasswd
+    grub_install="\nColoque aqui o nome da partição do disco: "
+    user_add="\nEscolha o nome de usuário: "
+    password_to_user="\nDigite uma senha para o seu novo usuário: "
+  elif [[ $REPLY == "2" ]]; then
+    ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime # Set your Region and City here
+    sed -i '177s/.//' /etc/locale.gen # uncomment in line 177 for en_US.UTF-8 UTF-8
+    echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+    echo "KEYMAP=de-latin1" >> /etc/vconsole.conf
+    echo "\nWhat's  the hostname of the machine? "
+    read hostname
+    echo ${hostname} >> /etc/hostname
+    echo "127.0.0.1 localhost" >> /etc/hosts
+    echo "::1       localhost" >> /etc/hosts
+    echo "127.0.1.1 ${hostname}.localdomain ${hostname}" >> /etc/hosts
+    echo "\nEnter with the password of the root: "
+    read password
+    echo root:${password} | chpasswd
+    grub_install="\nEnter the name of the disk partition here: "
+    user_add="\nChoose username: "
+    password_to_user="\nEnter the password for your new user: "
+  else
+    echo "\n[!] Invalid option! "
+    exit 1
+  fi
+}
+
+body
 
 # In this part you can remove packages that you are not going to use.
 # You can remove the tlp package if you are installing on a desktop or vm.
@@ -38,7 +70,9 @@ pacman -S --noconfirm grub base-devel os-prober networkmanager network-manager-a
 # pacman -S --noconfirm xf86-video-intel
 # pacman -S --noconfirm xf86-video-amdgpu
 
-grub-install --target=i386-pc /dev/sdX # replace sd"x" with your disk name, not the partition!
+echo $grub_install
+read partition_name
+grub-install --target=i386-pc ${partition_name}
 echo "GRUB_DISABLE_OS_PROBER=false" >> /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
@@ -53,12 +87,14 @@ systemctl enable acpid
 systemctl enable fstrim.timer
 systemctl enable tlp # you can comment this command out if you didn't install tlp, sse above
 
-# As said above, you can be replacing "alphaarch" for a name of your choose.
+echo $user_add
+read username
+echo $password_to_user
+read passworduser
+useradd -m ${username}
+echo ${username}:${passworduser} | chpasswd
+usermod -aG libvirt ${username}
 
-useradd -m alphaarch
-echo alphaarch:password | chpasswd # Change password of your choose.
-usermod -aG libvirt alphaarch
-
-echo "alphaarch ALL=(ALL) ALL" >> /etc/sudoers.d/alphaarch
+echo "${username} ALL=(ALL) ALL" >> /etc/sudoers.d/${username}
 
 printf "\e[1;132mDone! Type exit, umount -a and reboot or umount -R /mnt and shutdown -h now.\e[0m"
