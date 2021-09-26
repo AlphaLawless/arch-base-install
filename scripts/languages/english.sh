@@ -2,13 +2,13 @@
 
 packages() {
   clear
-  cat <<- EOF
-    [*] What's the packages you want to install?
+    cat <<- EOF
+        [*] What's the packages you want to install?
 
-    [*] Choose one -
-    [1] Main Packages
-    [2] Soft Packages
-  EOF
+        [*] Choose one -
+        [1] Main Packages
+        [2] Soft Packages
+    EOF
 
   read -p "[?] Select Option, typing 1 or 2: "
 
