@@ -1,12 +1,12 @@
 #!/bin/bash
 
 packages() {
-  clear
+    clear
     cat <<- EOF
         [*] What's the packages you want to install?
 
         [*] Choose one -
-        [1] Main Packages
+        [1] Main packages
         [2] Soft Packages
     EOF
 
