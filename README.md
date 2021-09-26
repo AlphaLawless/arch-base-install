@@ -1,7 +1,7 @@
 # Arch Linux Base Install
-* [pt-BR](https://github.com/AlphaLawless/arch-base-install/blob/main/doc/README.md)
+* [pt-BR](https://github.com/AlphaLawless/arch-base-install/blob/main/docs/README.md)
 
-Before you get start with the scripts, I would like to thank you for coming to this repository. First, you need to certificate that you have done all installation standard process from the [ArchWiki Guide](https://wiki.archlinux.org/title/Installation_guide) 
+Before you get start with the scripts, I would like to thank you for coming to this repository. First, you need to certificate that you have done all installation standard process from the [ArchWiki Guide](https://wiki.archlinux.org/title/Installation_guide)
 
 If you want to know how I build my Arch linux, follow the instructions! If you just want to know about the scripts installation, [click here](./README.md#Scripts-installations)!
 
@@ -176,10 +176,10 @@ Use the [pacstrap](https://man.archlinux.org/man/pacstrap.8) to install the need
 ```
 pacstrap /mnt base linux linux-firmware intel-ucode git vim
 ```
-*OBS: You can exchange intel-ucode for amd-ucode if your hardware is from amd!* 
+*OBS: You can exchange intel-ucode for amd-ucode if your hardware is from amd!*
 
 I hope you got a coffee because this can take some time (or not so much).
-Ending it, let's get to the final step before `arch-chroot` and run the scripts! 
+Ending it, let's get to the final step before `arch-chroot` and run the scripts!
 
 ### Fstab
 Generate a [fstab](https://wiki.archlinux.org/title/Fstab) (use -U or -L to choose between [UUID](https://wiki.archlinux.org/title/Persistent_block_device_naming#by-uuid) and labels, respectively):
