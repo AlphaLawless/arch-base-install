@@ -30,7 +30,7 @@ if [[ $aur_pikaur = true ]]; then
   sleep 5
   echo "[*] INSTALLING POLYBAR & DEPENDENCIES..."
   pikaur -S --noconfirm polybar
-  pikaur -S --noconfirm nerd-fonts-iosevka
+  pikaur -S --noconfirm ttf-iosevka
   pikaur -S --noconfirm ttf-icomoon-feather
   sleep 3
   sudo pacman -S python-pywal calc
