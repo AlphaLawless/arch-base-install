@@ -24,7 +24,7 @@ body() {
     echo "127.0.0.1 localhost.localdomain localhost" >> /etc/hosts
     echo "::1       localhost.localdomain localhost" >> /etc/hosts
     echo "127.0.1.1 ${hostname}.localdomain ${hostname}" >> /etc/hosts
-    bash ../root-passwordPT.sh
+    bash "/arch-base-install/scrips/root-passwordPT.sh"
   elif [[ $REPLY == "2" ]]; then
     echo -e "Enter with your Region: "
     read region
@@ -40,7 +40,7 @@ body() {
     echo "127.0.0.1 localhost" >> /etc/hosts
     echo "::1       localhost" >> /etc/hosts
     echo "127.0.1.1 ${hostname}.localdomain ${hostname}" >> /etc/hosts
-    bash ../root-passwordEN.sh
+    bash "/arch-base-install/scripts/root-passwordEN.sh"
   else
     echo "[!] Invalid option! "
     sleep 2
@@ -52,9 +52,9 @@ body() {
 body
 
 if [[ $REPLY == "1" ]]; then
-  bash ./languages/portuguese.sh
+  bash "/arch-base-install/scripts/base-mbr/languages/portuguese.sh"
 elif [[ $REPLY == "2" ]]; then
-  bash ./languages/english.sh
+  bash "/arch-base-install/scripts/base-mbr/languages/english.sh"
 fi
 
 sleep 2
