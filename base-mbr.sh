@@ -52,9 +52,9 @@ body() {
 body
 
 if [[ $REPLY == "1" ]]; then
-  bash ./scripts/languages/portuguese.sh
+  bash ./scripts/base-mbr/languages/portuguese.sh
 elif [[ $REPLY == "2" ]]; then
-  bash ./scripts/languages/english.sh
+  bash ./scripts/base-mbr/blanguages/english.sh
 fi
 
 sleep 2
