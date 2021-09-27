@@ -2,13 +2,14 @@
 
 packages() {
     clear
-    cat <<- EOF
-        [*] What's the packages you want to install?
+    cat <<EOF
+[*] What's the packages you want to install?
 
-        [*] Choose one -
-        [1] Main packages
-        [2] Soft Packages
-    EOF
+[*] Choose one -
+[1] Main packages
+[2] Soft Packages
+
+EOF
 
     read -p "[?] Select Option, typing 1 or 2: "
 
@@ -50,15 +51,16 @@ packages() {
         sleep 2 ; clear ; packages
     fi
 }
-packages
 
 videoDriverInstall(){
 	cat <<- EOF
+
 		[*] Want to install video drivers now?
 
 		[*] Choose one -
 		[1] Yes
 		[2] No
+
 	EOF
 
 	read -p "[?] Select option: "
@@ -71,15 +73,19 @@ videoDriverInstall(){
 			[1] Intel
 			[2] Amd
 			[3] Nvidia
+
 		EOF
 
 		read -p "[?] Select option: "
 
 		if [[ $REPLY == "1" ]]; then
+            echo -e "\n[!] Install Intel Drivers "
 			pacman -S xf86-video-intel
 		elif [[ $REPLY == "2" ]]; then
+            echo -e "\n[!] Install Amd Drivers "
 			pacman -S xf86-video-amdgpu
 		elif [[ $REPLY == "3" ]]; then
+            echo -e "\n[!] Install Nvidia Drivers "
 			pacman -S nvidia nivida-utils nvidia-settings
 		else
 			echo "[!] Invalid Option: "
@@ -89,7 +95,6 @@ videoDriverInstall(){
 		return 0
 	fi
 }
-videoDriverInstall
 
 createPassword() {
     echo -e "Create a password for username: \n"
@@ -136,4 +141,6 @@ createUser() {
     # Adding user in SUDOERS
     echo "${username} ALL=(ALL) ALL" >> /etc/sudoers.d/${username}
 }
+packages
+videoDriverInstall
 createUser
