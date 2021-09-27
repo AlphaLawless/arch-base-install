@@ -18,7 +18,7 @@ body() {
     locale-gen
     echo "LANG=pt_BR.UTF-8" >> /etc/locale.conf
     echo "KEYMAP=br-abnt2" >> /etc/vconsole.conf
-    echo "What's the hostname of the machine? "
+    echo "Digite um nome para o seu hostname? "
     read hostname
     echo ${hostname} >> /etc/hostname
     echo "127.0.0.1 localhost.localdomain localhost" >> /etc/hosts
