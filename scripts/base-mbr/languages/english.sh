@@ -97,7 +97,7 @@ videoDriverInstall(){
 }
 
 createPassword() {
-    echo -e "Create a password for username: \n"
+    echo -e "Create a password for username: "
     unset password
     while IFS= read -r -s -n1 pass; do
         if [[ -z $pass ]]; then
