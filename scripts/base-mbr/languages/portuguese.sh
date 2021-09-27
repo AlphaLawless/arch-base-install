@@ -31,6 +31,19 @@ EOF
         systemctl enable libvirtd
         systemctl enable acpid
         systemctl enable fstrim.timer
+        tlp_install() {
+            read -p "Você está em um laptop? [y/N] "
+
+            if [[ ${REPLY,,[A-Z} = "y" ]]; then
+                echo "INSTALANDO TLP"
+                pacman -S tlp tlp-rdw
+                systemctl enable tlp.service
+            else
+                return 0
+            fi
+        }
+        tlp_install
+
     elif [[ $REPLY == "2" ]]; then
         pacman -S grub base-devel os-prober networkmanager network-manager-applet dialog wpa_supplicant wireless_tools dosfstools mtools openssh reflector firewalld cups virt-manager qemu qemu-arch-extra edk2-ovmf pulseaudio alsa-utils
         sleep 5 ; clear ; lsblk
