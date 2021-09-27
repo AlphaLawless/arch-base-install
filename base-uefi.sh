@@ -1,69 +1,66 @@
 #!/bin/bash
 
-ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
-hwclock --systohc
-sed -i '393s/.//' /etc/locale.gen # uncomment in line 393 pt_BR.UTF-8 UTF-8
-locale-gen
-echo "LANG=pt_BR.UTF-8" >> /etc/locale.conf
-echo "KEYMAP=br-abnt2" >> /etc/vconsole.conf
-echo "Qual Hostname da maquina? "
-read hostname
-echo ${hostname} >> /etc/hostname # You may be replacing "alphaarch" for a name of your choice.
-echo "127.0.0.1 localhost.localdomain localhost" >> /etc/hosts
-echo "::1       localhost.localdomain localhost" >> /etc/hosts
-echo "127.0.1.1 ${hostname}.localdomain ${hostname}" >> /etc/hosts
-echo "Digite uma senha para a root: "
-read password
-echo root:${password} | chpasswd # Change password of your choose.
+body() {
+	cat <<- EOF
+		[*] What language do you want to install on your system?
 
-# For English speakers and native.
+		[*] Choose one -
+		[1] Portuguese
+		[2] English
+	EOF
 
-# ln -sf /usr/share/zoneinfo/Region/City /etc/localtime # Set your Region and City here
-# sed -i '177s/.//' /etc/locale.gen # uncomment in line 177 for en_US.UTF-8 UTF-8
-# echo "LANG=en_US.UTF-8" >> /etc/locale.conf
-# echo "KEYMAP=de-latin1" >> /etc/vconsole.conf
-# echo "archpc" >> /etc/hostname
-# echo "127.0.0.1 localhost" >> /etc/hosts
-# echo "::1       localhost" >> /etc/hosts
-# echo "127.0.1.1 archpc.localdomain archpc" >> /etc/hosts
-# echo root:password | chpasswd
+  read -p "[?] Select Option, typing 1 or 2: "
 
-# In this part you can remove packages that you are not going to use.
-# You can remove the tlp package if you are installing on a desktop or vm.
-# Remove the --noconfirm to have the right to choose which package will pass.
+  if [[ $REPLY == "1" ]]; then
+    ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+    hwclock --systohc
+    sed -i '393s/.//' /etc/locale.gen # uncomment in line 393 pt_BR.UTF-8 UTF-8
+    locale-gen
+    echo "LANG=pt_BR.UTF-8" >> /etc/locale.conf
+    echo "KEYMAP=br-abnt2" >> /etc/vconsole.conf
+    echo "What's the hostname of the machine? "
+    read hostname
+    echo ${hostname} >> /etc/hostname
+    echo "127.0.0.1 localhost.localdomain localhost" >> /etc/hosts
+    echo "::1       localhost.localdomain localhost" >> /etc/hosts
+    echo "127.0.1.1 ${hostname}.localdomain ${hostname}" >> /etc/hosts
+    bash ./scripts/root-passwordPT.sh
+  elif [[ $REPLY == "2" ]]; then
+    echo -e "Enter with your Region: "
+    read region
+    echo -e "Enter with your City now: "
+    read city
+    ln -sf /usr/share/zoneinfo/${region}/${city} /etc/localtime
+    sed -i '177s/.//' /etc/locale.gen # uncomment in line 177 for en_US.UTF-8 UTF-8
+    echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+    echo "KEYMAP=de-latin1" >> /etc/vconsole.conf
+    echo "What's the hostname of the machine? "
+    read hostname
+    echo ${hostname} >> /etc/hostname
+    echo "127.0.0.1 localhost" >> /etc/hosts
+    echo "::1       localhost" >> /etc/hosts
+    echo "127.0.1.1 ${hostname}.localdomain ${hostname}" >> /etc/hosts
+    bash ./scripts/root-passwordEN.sh
+  else
+    echo "[!] Invalid option! "
+    sleep 2
+    clear
+    body
+  fi
+  return $REPLY
+}
+body
 
-pacman -S --noconfirm grub base-devel os-prober efibootmgr networkmanager network-manager-applet dialog wpa_supplicant xdg-user-dirs xdg-utils wireless_tools dosfstools mtools linux-headers avahi openssh openbsd-netcat ipset firewalld nss-mdns dnsutils vde2 nfs-utils bash-completion reflector sof-firmware dnsmasq pulseaudio alsa-utils virt-manager qemu qemu-arch-extra edk2-ovmf acpi acpi_call acpid cups ntfs-3g terminus-font tlp
+if [[ $REPLY == "1" ]]; then
+  bash ./scripts/base-uefi/languages/portuguese.sh
+elif [[ $REPLY == "2" ]]; then
+  bash ./scripts/base-uefi/languages/english.sh
+fi
 
-# Soft package
-
-# pacman -S --noconfirm grub base-devel os-prober efibootmgr networkmanager network-manager-applet dialog wpa_supplicant wireless_tools openssh reflector tlp
-
-# pacman -S --noconfirm nvidia nivida-utils nvidia-settings
-# pacman -S --noconfirm xf86-video-intel
-# pacman -S --noconfirm xf86-video-amdgpu
-
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
-echo "GRUB_DISABLE_OS_PROBER=false" >> /etc/default/grub
-grub-mkconfig -o /boot/grub/grub.cfg
-
-systemctl enable NetworkManager
-systemctl enable sshd
-systemctl enable reflector.timer
-systemctl enable cups.service
-systemctl enable avahi-daemon
-systemctl enable firewalld
-systemctl enable libvirtd
-systemctl enable acpid
-systemctl enable fstrim.timer
-systemctl enable tlp # you can comment this command out if you didn't install tlp, sse above
-
-# As said above, you can be replacing "alphaarch" for a name of your choose.
-
-useradd -m alphaarch
-echo alphaarch:password | chpasswd # Change password of your choose.
-usermod -aG libvirt alphaarch
-
-echo "alphaarch ALL=(ALL) ALL" >> /etc/sudoers.d/alphaarch
-
+sleep 2
+clear
 printf "\e[1;132mDone! Type exit, umount -a and reboot or umount -R /mnt and shutdown -h now.\e[0m"
 
+mkdir -p $HOME/archfiles
+cp -p /arch-base-install $HOME/archfiles
+rm -rf /arch-base-install
