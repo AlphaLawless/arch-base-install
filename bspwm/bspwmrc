@@ -5,10 +5,14 @@
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 # Polybar launch
-$HOME/.config/polybar/colorblocks/launch.sh &
+bash $HOME/.config/polybar/launch.sh --cuts &
 
 # wallpaper with feh
-feh --bg-fill # $PATH or <URL> &
+feh --bg-fill https://github.com/AlphaLawless/arch-base-install/blob/main/wallpapers/wolf-blue-01.jpg?raw=true &
+
+# set keyboard
+# setxkbmap -option grp:alt_shit_toggle us & # If you have keyboard american
+setxkbmap -option grp:alt_shit_toggle br &
 
 # dunst is a lightweight replacement for the notification-daemons provided by most desktop environments.
 dunst &
