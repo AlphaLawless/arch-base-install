@@ -5,7 +5,6 @@
 # [DISCLAIMER] About Ly!
 # It seems that Ly Display Manager doesn't work so well with BSPWM, but there are ways to make it run. If you know something more concrete could be adding.
 install_ly=false
-install_librewolf=true
 aur_paru=false
 aur_pikaur=true
 
@@ -36,10 +35,9 @@ if [[ $aur_pikaur = true ]]; then
   sleep 3
   sudo pacman -S python-pywal calc
   cd /tmp
-  git clone https://aur.archlinux.org/networkmanager-dmenu-git.git
-  cd networkmanager-dmenu-git;makepkg -si --noconfirm
+  git clone https://aur.archlinux.org/pfetch.git
+  cd pfetch;makepkg -si --noconfirm
 fi
-
 
 # pikaur -S --noconfirm system76-power
 # sudo systemctl enable --now system76-power
@@ -51,13 +49,7 @@ fi
 echo "[!] MAIN PACKAGES..."
 sleep 5
 
-sudo pacman -S --noconfirm xorg bspwm sxhkd dunst rofi dmenu firefox kitty neofetch picom unclutter feh cronie nautilus arandr pulseaudio-alsa pavucontrol arc-gtk-theme arc-icon-theme vlc xclip peek kdenlive pacman-contrib
-
-if [[ $install_librewolf = true ]]; then
-  cd /tmp
-  git clone https://aur.archlinux.org/librewolf-bin.git librewolf
-  cd librewolf;makepkg -si --noconfirm
-fi
+sudo pacman -S --noconfirm xorg bspwm sxhkd dunst rofi firefox kitty neofetch picom unclutter feh cronie nautilus arandr pulseaudio-alsa pavucontrol arc-gtk-theme arc-icon-theme vlc xclip peek kdenlive pacman-contrib
 
 if [[ $install_ly = true ]]; then
   cd /tmp
@@ -83,9 +75,8 @@ install -Dm644 /etc/xdg/picom.conf                   ~/.config/picom/picom.conf
 
 echo "[*] COPYING FILES..."
 sleep 3
-cp $HOME/archfiles/arch-base-install/bspwm/bspwmrc ~/.config/bspwm/
-cp $HOME/archfiles/arch-base-install/bspwm/sxhkdrc ~/.config/sxhkd/
-cp $HOME/archfiles/arch-base-install/bspwm/dunstrc ~/.config/dunst/
-cp -r $HOME/archfiles/arch-base-install/bspwm/kitty/ ~/.config/kitty/
+cp -r /arch-base-install/bspwm/bspwmrc ~/.config/bspwm/
+cp -r /arch-base-install/bspwm/sxhkdrc ~/.config/sxhkd/
+cp -r /arch-base-install/bspwm/kitty/ ~/.config/kitty/
 
 printf "\e[1;32mDONE! CHANGE NECESSARY FILES BEFORE REBOOT\e[0m"
