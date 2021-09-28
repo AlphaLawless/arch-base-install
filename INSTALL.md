@@ -57,3 +57,4 @@ At the moment both the KDE and DWM scripts are being written.
 ## Troubleshooting
 
 Problems may happen during the installation, as a matter of fact, the script is not 100% optimized for every machine. If anything occurs I recommend reading the entire error message and keep it, then install it again until the `git clone` command, remembering the error. Finally, change everything you need in the scripts using vim/nano. If the error doesn't go away, send an Issue explaining what happened.
+
