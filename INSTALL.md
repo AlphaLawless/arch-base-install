@@ -18,26 +18,18 @@ git clone https://github.com/alphalawless/arch-base-install
 cd arch-base-install
 ```
 
-3. Change what you need in `base-mbr.sh` or `base-uefi.sh` with vim (or any other editor):
+3. Now grant the permissions for executing in the shell with `chmod`:
 
 ```sh
-vim base-mbr.sh
-#vim base-uefi.sh
+chmod +x arch-install.sh
 ```
 
-4. Now grant the permission for executing in the shell with `chmod`:
+4. Now run the script - I recommending making or taking a coffee now - and follow the instructions:
 
 ```sh
-chmod +x base-mbr.sh
-#chmod +x base-uefi.sh
+./arch-install.sh -i
 ```
-
-5. Now run the script - I recommending making or taking a coffee now -!:
-
-```sh
-./base-mbr.sh
-#./base-uefi.sh
-```
+    a) (Optional) You can see another options using simply `./arch-install.sh`
 
 With everything done you can leave `arch-chroot` typing `exit`, or using Ctrl + D. Then with it, umount the partitions using `umount -a` and finally reboot the system.
 
