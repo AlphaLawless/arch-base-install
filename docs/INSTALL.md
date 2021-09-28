@@ -30,11 +30,11 @@ Com tudo feito, você pode sair do `arch-chroot` digitando `exit`, ou usando o c
 No momento os scripts do KDE e DWM estão em construção.
 
 ### Window Manager
-* [BSPWM](./bspwm)
-* [DWM](./dwm)
+* [BSPWM](../bspwm)
+* [DWM](../dwm)
 
 ### Desktop Environment
-* [KDE](./kde)
+* [KDE](../kde)
 
 ## Solução de problemas
 
