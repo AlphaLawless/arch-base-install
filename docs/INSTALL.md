@@ -19,7 +19,7 @@ chmod +x arch-install.sh
 ```
 4. Agora rode o script no shell, pegue um café e siga as instruções:
 ```sh
-./base-mbr.sh -i
+./arch-install.sh -i
 ```
     a)(Opcional) Você pode ver também outras opções usando apenas `./arch-install.sh`
 
