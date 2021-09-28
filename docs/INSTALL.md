@@ -13,25 +13,29 @@ git clone https://github.com/alphalawless/arch-base-install
 ```
 cd arch-base-install
 ```
-3. Mude o que precisar entrando com o vim no `base-mbr.sh` ou `base-uefi.sh`:
+3. Dê as permissões para executar o `arch-install.sh` no shell com o comando `chmod`:
 ```sh
-vim base-mbr.sh
-#vim base-uefi.sh
+chmod +x arch-install.sh
 ```
-4. Agora dê as permissões para executar no shell com o comando `chmod`:
+4. Agora rode o script no shell, pegue um café e siga as instruções:
 ```sh
-chmod +x base-mbr.sh
-#chmod +x base-uefi.sh
+./base-mbr.sh -i
 ```
-5. Agora rode o script no shell e pegue um café até terminar:
-```sh
-./base-mbr.sh
-#./base-uefi.sh
-```
+    a)(Opcional) Você pode ver também outras opções usando apenas `./arch-install.sh`
 
 Com tudo feito, você pode sair do `arch-chroot` digitando `exit`, ou usando o comando Ctrl + D. E com isso desmonte as partições usando `umount -a` e reinicie o sistema.
 
 ## DE ou WM
 
-...
-Essa parte ainda está em construção. Logo mais vai ter!
+No momento os scripts do KDE e DWM estão em construção.
+
+### Window Manager
+* [BSPWM](./bspwm)
+* [DWM](./dwm)
+
+### Desktop Environment
+* [KDE](./kde)
+
+## Solução de problemas
+
+Problemas podem acontecer durante a sua instalação, afinal o script não está 100% otimizado para todas as máquinas. Caso aconteça recomendo que você leia o erro e guarde-o para assim, instalar novamente o archlinux até o ponto de dá o `git clone`, lembrando do erro. Então, mude o que precisar nos scripts de instalação usando ou vim/nano. Se o error continuar, envie uma Issue explicando o que ocorreu.
