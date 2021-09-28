@@ -13,6 +13,7 @@ usage: ${0##*/} [flags] [options]
     --install, -i            Start installation
     --version, -v            View installer version
     --help, -h               Show options help
+
 EOF
 }
 
@@ -25,10 +26,12 @@ version="${0##*/} version 1.0.0"
 
 set_documentation() {
     cat <<EOF
+
 The purpose of this arch-install is to make your life easier
 when installing arch linux. You can still configure it your way,
 so I recommend you install a text editor (nano, vim etc.) to change
 what you need.
+
 EOF
 }
 
