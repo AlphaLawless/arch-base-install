@@ -7,9 +7,12 @@
 install_ly=false
 aur_paru=false
 aur_pikaur=true
+_github="https://github.com/alphalawless"
+repo="arch-base-install/tree/main/wallpapers"
 
 sudo timedatectl set-ntp true
 sudo hwclock --systohc
+sudo reflector -c Brazil -a 12 --sort rate --save /etc/pacman.d/mirrorlist
 
 sudo pacman -Syy
 
@@ -59,7 +62,12 @@ if [[ $install_ly = true ]]; then
 else
   sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
   sleep 5
+  sudo pacman -S --noconfirm wget
   sudo systemctl enable lightdm
+  sudo sed -i 's/^#greeter-session.*/greeter-session=lightdm-gtk-greeter/' /etc/lightdm/lightdm.conf
+  sudo sed -i '/^#greeter-hide-users=/s/#//' /etc/lightdm/lightdm.conf
+  sudo wget "$_site/$repo/archlinux.jpg" -o /usr/share/pixmaps/archlinux.jpg
+  sudo echo "background=/usr/share/pixmaps/archlinux.jpg" >> /etc/lightdm/lightdm-gtk-greeter.conf
 fi
 
 echo "[*] INSTALLING FONTS..."
@@ -70,8 +78,6 @@ sudo pacman -S --noconfirm dina-font tamsyn-font bdf-unifont ttf-bitstream-vera 
 mkdir -p .config/{bspwm,sxhkd,dunst,picom,kitty}
 
 install -Dm755 /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/bspwmrc
-install -Dm644 /usr/share/doc/sxhkd/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc
-install -Dm644 /etc/xdg/picom.conf                   ~/.config/picom/picom.conf
 
 echo "[*] COPYING FILES..."
 sleep 3
