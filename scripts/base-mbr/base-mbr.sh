@@ -33,7 +33,9 @@ body() {
     ln -sf /usr/share/zoneinfo/${region}/${city} /etc/localtime
     sed -i '177s/.//' /etc/locale.gen # uncomment in line 177 for en_US.UTF-8 UTF-8
     echo "LANG=en_US.UTF-8" >> /etc/locale.conf
-    echo "KEYMAP=de-latin1" >> /etc/vconsole.conf
+    echo "Enter with your keyboard map: "
+    read keyboard
+    echo "KEYMAP=${keyboard}" >> /etc/vconsole.conf
     echo "What's the hostname of the machine? "
     read hostname
     echo ${hostname} >> /etc/hostname
