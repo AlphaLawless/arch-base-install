@@ -7,8 +7,6 @@
 install_ly=false
 aur_paru=false
 aur_pikaur=true
-_github="https://github.com/alphalawless"
-repo="arch-base-install/tree/main/wallpapers"
 
 sudo timedatectl set-ntp true
 sudo hwclock --systohc
@@ -60,14 +58,16 @@ if [[ $install_ly = true ]]; then
   cd ly;makepkg -si
   sudo systemctl enable ly.service
 else
-  sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+  sudo pacman -S lightdm lightdm-webkit2-greeter wget
   sleep 5
-  sudo pacman -S --noconfirm wget
   sudo systemctl enable lightdm
-  sudo sed -i 's/^#greeter-session.*/greeter-session=lightdm-gtk-greeter/' /etc/lightdm/lightdm.conf
-  sudo sed -i '/^#greeter-hide-users=/s/#//' /etc/lightdm/lightdm.conf
-  sudo wget "$_site/$repo/archlinux.jpg" -o /usr/share/pixmaps/archlinux.jpg
-  sudo echo "background=/usr/share/pixmaps/archlinux.jpg" >> /etc/lightdm/lightdm-gtk-greeter.conf
+  sudo sed -i 's/^#greeter-session.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
+  cd /tmp ; mkdir glorious
+  sudo wget git.io/webkit2 -O tema.tar.gz
+  sudo mv tema.tar.gz glorious/ ; cd glorious/ ; tar zxvf tema.tar.gz ; sudo rm
+  tema.tar.gz ; cd .. ; sudo mv glorious/ /usr/share/lightdm-webkit/themes/
+  sudo sed -i 's/debug_mode.*/debug_mode          = true/g' /etc/lightdm/lightdm-webkit2-greeter.conf
+  sudo sed -i 's/webkit_theme.*/webkit_theme        = glorious/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 fi
 
 echo "[*] INSTALLING FONTS..."
@@ -75,7 +75,7 @@ sleep 5
 
 sudo pacman -S --noconfirm dina-font tamsyn-font bdf-unifont ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid gnu-free-fonts ttf-ibm-plex ttf-liberation ttf-linux-libertine noto-fonts font-bh-ttf ttf-roboto tex-gyre-fonts ttf-ubuntu-font-family ttf-anonymous-pro ttf-cascadia-code ttf-fantasque-sans-mono ttf-fira-mono ttf-hack ttf-fira-code ttf-inconsolata ttf-jetbrains-mono ttf-monofur adobe-source-code-pro-fonts cantarell-fonts inter-font ttf-opensans gentium-plus-font ttf-junicode adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts noto-fonts-cjk noto-fonts-emoji ttf-font-awesome awesome-terminal-fonts
 
-mkdir -p .config/{bspwm,sxhkd,dunst,picom,kitty}
+mkdir -p .config/{bspwm,sxhkd,dunst,kitty}
 
 install -Dm755 /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/bspwmrc
 
