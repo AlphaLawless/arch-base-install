@@ -14,7 +14,7 @@ EOF
     read -p "[?] Select Option, typing 1 or 2: "
 
     if [[ $REPLY == "1" ]]; then
-        pacman -S grub base-devel os-prober networkmanager network-manager-applet dialog wpa_supplicant xdg-user-dirs xdg-utils wireless_tools dosfstools mtools linux-headers avahi openssh openbsd-netcat ipset firewalld nss-mdns dnsutils vde2 nfs-utils bash-completion reflector sof-firmware dnsmasq pulseaudio alsa-utils virt-manager qemu qemu-arch-extra edk2-ovmf acpi acpi_call acpid cups ntfs-3g terminus-font
+        pacman -S grub base-devel os-prober networkmanager network-manager-applet dialog wpa_supplicant xdg-user-dirs xdg-utils wireless_tools dosfstools mtools linux-headers bluez bluez-utils avahi openssh openbsd-netcat ipset firewalld nss-mdns dnsutils vde2 nfs-utils bash-completion reflector sof-firmware dnsmasq pulseaudio alsa-utils virt-manager qemu qemu-arch-extra edk2-ovmf acpi acpi_call acpid cups ntfs-3g terminus-font
         sleep 5 ; clear ; lsblk
         echo -e "Enter your partition name for grub installation, use the table above. e.g. /dev/sdx: "
         read partition_name
@@ -24,6 +24,7 @@ EOF
 
         systemctl enable NetworkManager
         systemctl enable sshd
+        systemctl enable bluetooth
         systemctl enable reflector.timer
         systemctl enable cups.service
         systemctl enable avahi-daemon

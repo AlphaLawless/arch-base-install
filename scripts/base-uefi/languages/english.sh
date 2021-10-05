@@ -14,7 +14,7 @@ EOF
     read -p "[?] Select Option, typing 1 or 2: "
 
     if [[ $REPLY == "1" ]]; then
-        pacman -S grub base-devel efibootmgr os-prober networkmanager network-manager-applet dialog wpa_supplicant xdg-user-dirs xdg-utils wireless_tools dosfstools mtools linux-headers avahi openssh openbsd-netcat ipset firewalld nss-mdns dnsutils vde2 nfs-utils bash-completion reflector sof-firmware dnsmasq pulseaudio alsa-utils virt-manager qemu qemu-arch-extra edk2-ovmf acpi acpi_call acpid cups ntfs-3g terminus-font
+        pacman -S grub base-devel efibootmgr os-prober networkmanager network-manager-applet dialog wpa_supplicant xdg-user-dirs xdg-utils wireless_tools dosfstools mtools bluez bluez-utils linux-headers avahi openssh openbsd-netcat ipset firewalld nss-mdns dnsutils vde2 nfs-utils bash-completion reflector sof-firmware dnsmasq pulseaudio alsa-utils virt-manager qemu qemu-arch-extra edk2-ovmf acpi acpi_call acpid cups ntfs-3g terminus-font
         sleep 5
         clear
         grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
@@ -23,6 +23,7 @@ EOF
 
         systemctl enable NetworkManager
         systemctl enable sshd
+        systemctl enable bluetooth
         systemctl enable reflector.timer
         systemctl enable cups.service
         systemctl enable avahi-daemon
