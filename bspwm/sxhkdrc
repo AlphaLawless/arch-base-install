@@ -6,11 +6,15 @@
 
 # Take a screenshot
 super + {_, shift+, alt+}Print
-  screenshot.sh -{s,c,a}
+  screenshot -{s,c,a}
 
 # terminal emulator
 super + Return
-	kitty
+  kitty
+
+# lockscreen
+alt + shift + x
+  betterlockscreen -l dim
 
 # program laucher alt
 super + @space
