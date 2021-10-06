@@ -35,7 +35,7 @@ EOF
         tlp_install() {
             read -p "Você está em um laptop? [y/N] "
 
-            if [[ ${REPLY,,[A-Z} = "y" ]]; then
+            if [[ ${REPLY,,[A-Z]} = "y" ]]; then
                 echo "INSTALANDO TLP"
                 pacman -S tlp tlp-rdw
                 systemctl enable tlp.service

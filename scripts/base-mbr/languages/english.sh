@@ -36,7 +36,7 @@ EOF
         tlp_install() {
             read -p "Are you on a latop? [y/N] "
 
-            if [[ ${REPLY,,[A-Z} = "y" ]]; then
+            if [[ ${REPLY,,[A-Z]} = "y" ]]; then
                 echo "INSTALL TLP"
                 pacman -S tlp tlp-rdw
                 systemctl enable tlp.service
