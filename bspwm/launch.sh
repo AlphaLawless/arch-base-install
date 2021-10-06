@@ -78,12 +78,12 @@ sudo pacman -S --noconfirm dina-font tamsyn-font bdf-unifont ttf-bitstream-vera 
 mkdir -p .config/{bspwm,sxhkd,dunst,kitty}
 
 install -Dm755 /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/bspwmrc
+install -Dm644 /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc
 
 echo "[*] COPYING AND MOVING FILES..."
-sleep 3
 cp -r /arch-base-install/bspwm/bspwmrc ~/.config/bspwm/
 cp -r /arch-base-install/bspwm/sxhkdrc ~/.config/sxhkd/
 cp -r /arch-base-install/bspwm/kitty/ ~/.config/kitty/
-mv /arch-base-install/wallpapers/ ~/wallpapers
+sudo mv /arch-base-install/wallpapers/ ~/wallpapers
 
 printf "\e[1;32mDONE! CHANGE NECESSARY FILES BEFORE REBOOT\e[0m"
