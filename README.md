@@ -3,7 +3,7 @@
 
 Before you get start with the scripts, I would like to thank you for coming to this repository. First, you need to certificate that you have done all installation standard process from the [ArchWiki Guide](https://wiki.archlinux.org/title/Installation_guide)
 
-If you want to know how I build my Arch linux, follow the instructions! If you just want to know about the scripts installation, [click here](./README.md#Scripts-installations)!
+If you want to know how I build my Arch linux, follow the instructions! If you just want to know about the scripts installation, [click here](./README.md#Scripts-installation)!
 
 ## Installing Arch Linux
 
