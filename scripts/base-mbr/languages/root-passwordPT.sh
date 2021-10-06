@@ -28,7 +28,7 @@ createRootPasswordPT() {
     sleep 2
   else
     echo -e "[!] Errado, por favor faça novamente...\n"
-    sleep 2 ; clear ; createRootPassword
+    sleep 2 ; clear ; createRootPasswordPT
   fi
   return $password
 }
