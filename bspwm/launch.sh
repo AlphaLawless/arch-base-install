@@ -7,12 +7,13 @@
 install_ly=false
 aur_paru=false
 aur_pikaur=true
+DIR=`pwd`
 
 sudo timedatectl set-ntp true
 sudo hwclock --systohc
 sudo reflector -c Brazil -a 12 --sort rate --save /etc/pacman.d/mirrorlist
 
-sudo pacman -Syy
+sudo pacman -Syyu
 
 sudo firewall-cmd --add-port=1025-65535/tcp --permanent
 sudo firewall-cmd --add-port=1025-65535/udp --permanent
@@ -29,7 +30,7 @@ if [[ $aur_pikaur = true ]]; then
   git clone https://aur.archlinux.org/pikaur.git
   cd pikaur/;makepkg -si --noconfirm
   sleep 5
-  echo "[*] INSTALLING POLYBAR & DEPENDENCIES..."
+  echo -e "\e[1;31m[*] INSTALLING POLYBAR & DEPENDENCIES...\e[0m"
   pikaur -S --noconfirm polybar
   pikaur -S --noconfirm ttf-iosevka
   pikaur -S --noconfirm ttf-icomoon-feather
@@ -47,7 +48,7 @@ fi
 # pikaur -S --noconfirm auto-cpufreq
 # sudo systemctl enable --now auto-cpufreq
 
-echo "[!] MAIN PACKAGES..."
+echo -e "\e[1;31m[!] MAIN PACKAGES...\e[0m"
 sleep 5
 
 sudo pacman -S --noconfirm xorg bspwm sxhkd dunst rofi firefox kitty neofetch picom unclutter feh cronie nautilus arandr pulseaudio-alsa pavucontrol arc-gtk-theme arc-icon-theme vlc xclip peek kdenlive pacman-contrib
@@ -64,26 +65,31 @@ else
   sudo sed -i 's/^#greeter-session.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
   cd /tmp ; mkdir glorious
   sudo wget git.io/webkit2 -O tema.tar.gz
-  sudo mv tema.tar.gz glorious/ ; cd glorious/ ; tar zxvf tema.tar.gz ; sudo rm
-  tema.tar.gz ; cd .. ; sudo mv glorious/ /usr/share/lightdm-webkit/themes/
+  sudo mv tema.tar.gz glorious/ ; cd glorious/
+  tar zxvf tema.tar.gz
+  sudo rm tema.tar.gz ; cd ..
+  sudo mv glorious/ /usr/share/lightdm-webkit/themes/
   sudo sed -i 's/debug_mode.*/debug_mode          = true/g' /etc/lightdm/lightdm-webkit2-greeter.conf
   sudo sed -i 's/webkit_theme.*/webkit_theme        = glorious/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 fi
 
-echo "[*] INSTALLING FONTS..."
+echo -e "\e[1;31m[*] INSTALLING FONTS...\e[0m"
 sleep 5
 
 sudo pacman -S --noconfirm dina-font tamsyn-font bdf-unifont ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid gnu-free-fonts ttf-ibm-plex ttf-liberation ttf-linux-libertine noto-fonts font-bh-ttf ttf-roboto tex-gyre-fonts ttf-ubuntu-font-family ttf-anonymous-pro ttf-cascadia-code ttf-fantasque-sans-mono ttf-fira-mono ttf-hack ttf-fira-code ttf-inconsolata ttf-jetbrains-mono ttf-monofur adobe-source-code-pro-fonts cantarell-fonts inter-font ttf-opensans gentium-plus-font ttf-junicode adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts noto-fonts-cjk noto-fonts-emoji ttf-font-awesome awesome-terminal-fonts
 
-mkdir -p .config/{bspwm,sxhkd,dunst,kitty}
+mkdir -p .config/{bspwm,sxhkd,dunst,kitty,picom}
 
 install -Dm755 /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/bspwmrc
 install -Dm644 /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc
 
-echo "[*] COPYING AND MOVING FILES..."
-cp -r /arch-base-install/bspwm/bspwmrc ~/.config/bspwm/
-cp -r /arch-base-install/bspwm/sxhkdrc ~/.config/sxhkd/
-cp -r /arch-base-install/bspwm/kitty/ ~/.config/kitty/
+clear
+echo -e "\e[1;31m[*] COPYING AND MOVING FILES...\e[0m"
+cp -r $DIR/bspwmrc ~/.config/bspwm/
+cp -r $DIR/sxhkdrc ~/.config/sxhkd/
+cp -r $DIR/kitty/ ~/.config/kitty/
+cp -r $DIR/dunst/ ~/.config/dunst/
 sudo mv /arch-base-install/wallpapers/ ~/wallpapers
 
-printf "\e[1;32mDONE! CHANGE NECESSARY FILES BEFORE REBOOT\e[0m"
+clear
+printf "\e[1;32m* DONE! CHANGE NECESSARY FILES BEFORE REBOOT\e[0m"
