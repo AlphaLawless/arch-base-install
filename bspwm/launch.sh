@@ -2,9 +2,12 @@
 
 # Options
 # Choose whether or not a particular package. Just toggle between TRUE or FALSE.
-# [DISCLAIMER] About Ly!
+# ----------------------+
+# [DISCLAIMER] About Ly!|
+# ----------------------+
 # It seems that Ly Display Manager doesn't work so well with BSPWM, but there are ways to make it run. If you know something more concrete could be adding.
 install_ly=false
+install_lightdm=true
 aur_paru=false
 aur_pikaur=true
 DIR=`pwd`
@@ -58,23 +61,51 @@ if [[ $install_ly = true ]]; then
   git clone https://aur.archlinux.org/ly
   cd ly;makepkg -si
   sudo systemctl enable ly.service
-else
-  sudo pacman -S lightdm lightdm-webkit2-greeter wget
-  sleep 5
-  sudo systemctl enable lightdm
-  sudo sed -i 's/^#greeter-session.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
-  cd /tmp ; mkdir glorious
-  sudo wget git.io/webkit2 -O tema.tar.gz
-  sudo mv tema.tar.gz glorious/ ; cd glorious/
-  tar zxvf tema.tar.gz
-  sudo rm tema.tar.gz ; cd ..
-  sudo mv glorious/ /usr/share/lightdm-webkit/themes/
-  sudo sed -i 's/debug_mode.*/debug_mode          = true/g' /etc/lightdm/lightdm-webkit2-greeter.conf
-  sudo sed -i 's/webkit_theme.*/webkit_theme        = glorious/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 fi
 
-echo -e "\e[1;31m[*] INSTALLING FONTS...\e[0m"
-sleep 5
+if [[ $install_lightdm = true ]]; then
+    sudo pacman -S lightdm lightdm-webkit2-greeter wget
+    sleep 5
+    sudo systemctl enable lightdm
+    lightdm_install() {
+        cat <<-EOF
+
+        Do you want to install in lightdm:
+
+        [1] webkit2
+        [2] gtk
+
+    EOF
+
+    read -r "[*] Choose one option: "
+    if [[ $REPLY == "1" ]]; then
+        sudo sed -i 's/^#greeter-session.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
+        cd /tmp ; mkdir glorious
+        sudo wget git.io/webkit2 -O tema.tar.gz
+        sudo mv tema.tar.gz glorious/ ; cd glorious/
+        tar zxvf tema.tar.gz
+        sudo rm tema.tar.gz ; cd ..
+        sudo mv glorious/ /usr/share/lightdm-webkit/themes/
+        sudo sed -i 's/debug_mode.*/debug_mode          = true/g' /etc/lightdm/lightdm-webkit2-greeter.conf
+        sudo sed -i 's/webkit_theme.*/webkit_theme        = glorious/g' /etc/lightdm/lightdm-webkit2-greeter.conf
+    elif [[ $REPLY == "2" ]]; then
+        local _site="https://github.com/alphalawless"
+        local repo="arch-base-install/tree/main/wallpapers"
+        sudo sed -i 's/^#greeter-session.*/greeter-session=lightdm-gtk-greeter/' /etc/lightdm/lightdm.conf
+        sudo sed -i '/^#greeter-hide-users=/s/#//' /etc/lightdm/lightdm.conf
+        sudo wget $_site/$repo/archlinux.jpg -o /usr/share/pixmaps/archlinux.jpg
+        sudo echo "background=/usr/share/pixmaps/archlinux.jpg" >> /etc/lightdm/lightdm-gtk-greeter.conf
+    else
+        sleep 3 ; clear
+        echo -e "\e[1;31m Invalid Option: \e[0m \n"
+        lightdm_install
+    fi
+    }
+    lightdm_install
+fi
+
+echo -e "\e[1;32m[*] INSTALLING FONTS...\e[0m"
+sleep 3
 
 sudo pacman -S --noconfirm dina-font tamsyn-font bdf-unifont ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid gnu-free-fonts ttf-ibm-plex ttf-liberation ttf-linux-libertine noto-fonts font-bh-ttf ttf-roboto tex-gyre-fonts ttf-ubuntu-font-family ttf-anonymous-pro ttf-cascadia-code ttf-fantasque-sans-mono ttf-fira-mono ttf-hack ttf-fira-code ttf-inconsolata ttf-jetbrains-mono ttf-monofur adobe-source-code-pro-fonts cantarell-fonts inter-font ttf-opensans gentium-plus-font ttf-junicode adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts noto-fonts-cjk noto-fonts-emoji ttf-font-awesome awesome-terminal-fonts
 
@@ -90,6 +121,5 @@ cp -r $DIR/sxhkdrc ~/.config/sxhkd/
 cp -r $DIR/kitty/ ~/.config/kitty/
 cp -r $DIR/dunst/ ~/.config/dunst/
 sudo mv /arch-base-install/wallpapers/ ~/wallpapers
-
-clear
+sleep 3 ; clear
 printf "\e[1;32m* DONE! CHANGE NECESSARY FILES BEFORE REBOOT\e[0m"
