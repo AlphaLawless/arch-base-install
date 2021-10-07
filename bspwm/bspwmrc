@@ -5,7 +5,7 @@
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 # Polybar launch
-bash $HOME/.config/polybar/launch.sh --cuts &
+$HOME/.config/polybar/launch.sh --cuts &
 
 # wallpaper with feh
 feh --bg-fill $HOME/wallpapers/jellyfish_astronaut1920x1080.jpg &
