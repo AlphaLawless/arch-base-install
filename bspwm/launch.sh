@@ -10,7 +10,10 @@ install_ly=false
 install_lightdm=true
 aur_paru=false
 aur_pikaur=true
+
 DIR=`pwd`
+_site="https://github.com/alphalawless"
+repo="arch-base-install/tree/main/wallpapers"
 
 sudo timedatectl set-ntp true
 sudo hwclock --systohc
@@ -32,7 +35,7 @@ if [[ $aur_pikaur = true ]]; then
   cd /tmp
   git clone https://aur.archlinux.org/pikaur.git
   cd pikaur/;makepkg -si --noconfirm
-  sleep 5
+  sleep 3
   echo -e "\e[1;31m[*] INSTALLING POLYBAR & DEPENDENCIES...\e[0m"
   pikaur -S --noconfirm polybar
   pikaur -S --noconfirm ttf-iosevka
@@ -52,7 +55,7 @@ fi
 # sudo systemctl enable --now auto-cpufreq
 
 echo -e "\e[1;31m[!] MAIN PACKAGES...\e[0m"
-sleep 5
+sleep 3
 
 sudo pacman -S --noconfirm xorg bspwm sxhkd dunst rofi firefox kitty neofetch picom unclutter feh cronie nautilus arandr pulseaudio-alsa pavucontrol arc-gtk-theme arc-icon-theme vlc xclip peek kdenlive pacman-contrib
 
@@ -64,21 +67,22 @@ if [[ $install_ly = true ]]; then
 fi
 
 if [[ $install_lightdm = true ]]; then
-    sudo pacman -S lightdm lightdm-webkit2-greeter wget
-    sleep 5
+    sudo pacman -S lightdm wget
+    sleep 3
     sudo systemctl enable lightdm
     lightdm_install() {
-        cat <<-EOF
+        cat <<EOF
 
         Do you want to install in lightdm:
 
         [1] webkit2
         [2] gtk
 
-    EOF
+EOF
 
-    read -r "[*] Choose one option: "
+    read -p "[*] Choose one option: "
     if [[ $REPLY == "1" ]]; then
+        sudo pacman -S --noconfirm lightdm-webkit2-greeter
         sudo sed -i 's/^#greeter-session.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
         cd /tmp ; mkdir glorious
         sudo wget git.io/webkit2 -O tema.tar.gz
@@ -89,11 +93,10 @@ if [[ $install_lightdm = true ]]; then
         sudo sed -i 's/debug_mode.*/debug_mode          = true/g' /etc/lightdm/lightdm-webkit2-greeter.conf
         sudo sed -i 's/webkit_theme.*/webkit_theme        = glorious/g' /etc/lightdm/lightdm-webkit2-greeter.conf
     elif [[ $REPLY == "2" ]]; then
-        local _site="https://github.com/alphalawless"
-        local repo="arch-base-install/tree/main/wallpapers"
+        sudo pacman -S --noconfirm lightdm-gtk-greeter
         sudo sed -i 's/^#greeter-session.*/greeter-session=lightdm-gtk-greeter/' /etc/lightdm/lightdm.conf
         sudo sed -i '/^#greeter-hide-users=/s/#//' /etc/lightdm/lightdm.conf
-        sudo wget $_site/$repo/archlinux.jpg -o /usr/share/pixmaps/archlinux.jpg
+        sudo wget $_site/$repo/archlinux.jpg -o /usr/share/pixmaps/
         sudo echo "background=/usr/share/pixmaps/archlinux.jpg" >> /etc/lightdm/lightdm-gtk-greeter.conf
     else
         sleep 3 ; clear
@@ -114,12 +117,11 @@ mkdir -p .config/{bspwm,sxhkd,dunst,kitty,picom}
 install -Dm755 /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/bspwmrc
 install -Dm644 /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc
 
-clear
 echo -e "\e[1;31m[*] COPYING AND MOVING FILES...\e[0m"
 cp -r $DIR/bspwmrc ~/.config/bspwm/
 cp -r $DIR/sxhkdrc ~/.config/sxhkd/
 cp -r $DIR/kitty/ ~/.config/kitty/
 cp -r $DIR/dunst/ ~/.config/dunst/
 sudo mv /arch-base-install/wallpapers/ ~/wallpapers
-sleep 3 ; clear
+sleep 3
 printf "\e[1;32m* DONE! CHANGE NECESSARY FILES BEFORE REBOOT\e[0m"
