@@ -18,7 +18,7 @@ setxkbmap -option grp:alt_shit_toggle br &
 dunst &
 
 # picom
-picom -b &
+picom --experimental-backends &
 
 # unclutter hide cursor when you do not need it.
 unclutter &
