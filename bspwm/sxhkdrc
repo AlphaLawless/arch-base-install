@@ -22,7 +22,7 @@ super + @space
 
 # program launcher
 super + d
-  ${HOME}/.config/rofi/scripts/menu_apps.sh
+  $HOME/.config/rofi/applets/menu/apps.sh
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -147,8 +147,4 @@ XF86MonBrightnessDown
 	xbacklight -dec 5
 XF86MonBrightnessUp
 	xbacklight -inc 5
-
-# lockscreen
-super + x
-  light-locker-command -l
 
