@@ -97,7 +97,7 @@ EOF
         sudo sed -i 's/^#greeter-session.*/greeter-session=lightdm-gtk-greeter/' /etc/lightdm/lightdm.conf
         sudo sed -i '/^#greeter-hide-users=/s/#//' /etc/lightdm/lightdm.conf
         sudo wget $_site/$repo/archlinux.jpg -o /usr/share/pixmaps/
-        sudo echo "background=/usr/share/pixmaps/archlinux.jpg" >> /etc/lightdm/lightdm-gtk-greeter.conf
+        sudo sed -i "s/^#background=/background=\/usr\/share\/pixmaps\/archlinux.jpg" >> /etc/lightdm/lightdm-gtk-greeter.conf
     else
         sleep 3 ; clear
         echo -e "\e[1;31m Invalid Option: \e[0m \n"
