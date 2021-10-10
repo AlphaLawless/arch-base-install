@@ -36,7 +36,7 @@ EOF
 }
 
 set_install() {
-    get=$(ls /sys/firmware/efi/efivars)
+    local get=$(ls /sys/firmware/efi/efivars)
 
     if $get ; then
         echo "[!] Install BIOS LEGACY MODE"
