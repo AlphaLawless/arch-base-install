@@ -2,14 +2,14 @@
 
 # Options
 # Choose whether or not a particular package. Just toggle between TRUE or FALSE.
-aur_pikaur=false
+aur_pikaur=true
 aur_paru=false
 
 sudo timedatectl set-ntp true
 sudo hwclock --systohc
 sudo reflector -c Brazil -a 12 --sort rate --save /etc/pacman.d/mirrorlist
 
-sudo pacman -Sy
+sudo pacman -Syyu
 
 sudo firewall-cmd --add-port=1025-65535/tcp --permanent
 sudo firewall-cmd --add-port=1025-65535/udp --permanent
@@ -33,10 +33,11 @@ fi
 # pikaur -S --noconfirm auto-cpufreq
 # sudo systemctl enable --now auto-cpufreq
 
-echo "\n[!] MAIN PACKAGES"
+echo -e "\e[0;32m[!] MAIN PACKAGES...\e[0m"
 sleep 5
 
-sudo pacman -S --noconfirm xorg sddm plasma kde-applications firefox neofetch simplescreenrecorder vlc papirus-icon-theme peek kdenlive materia-kde
+sudo pacman -S --noconfirm xorg sddm plasma kde-applications firefox neofetch simplescreenrecorder papirus-icon-theme
+peek kdenlive materia-kde flatpak
 
 sudo systemctl enable sddm
 
