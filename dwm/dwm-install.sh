@@ -43,7 +43,7 @@ echo -e "\e[0;32m[!] MAIN PACKAGES...\e[0m"
 sleep 3
 
 sudo pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xsetroot firefox polkit-gnome neofetch nitrogen lxappearance
-thunar kdenlive pavucontrol pulseaudio-alsa xclip peek vlc
+thunar kdenlive pavucontrol pulseaudio-alsa xclip peek vlc picom
 
 echo -e "\e[0;32m Install Pfetch...[0m"
 cd /tmp
