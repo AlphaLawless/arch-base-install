@@ -79,6 +79,18 @@ do
     cd $repo; make; sudo make install;cd ..
 done
 
+# Generate Xsession
+cat > ./temp << "EOF"
+[Desktop Entry]
+Encoding=UTF-8
+Name=Dwm
+Comment=Dynamic window manager
+Exec=dwm
+Icon=dwm
+Type=XSession
+EOF
+sudo cp ./temp /usr/share/xsessions/dwm.desktop;rm ./temp
+
 # Installation of ly
 if [[ $install_ly = true ]]; then
     cd /tmp
@@ -128,18 +140,6 @@ EOF
     }
     lightdm_install
 fi
-
-# Generate Xsession
-cat > ./temp << "EOF"
-[Desktop Entry]
-Encoding=UTF-8
-Name=Dwm
-Comment=Dynamic window manager
-Exec=dwm
-Icon=dwm
-Type=XSession
-EOF
-sudo cp ./temp /usr/share/xsessions/dwm.desktop;rm ./temp
 
 # Generation .xprofile
 if [[ $gen_xprofile = true ]]; then
