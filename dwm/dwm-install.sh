@@ -93,19 +93,15 @@ sudo mkdir /usr/share/xsessions/
 sudo cp ./temp /usr/share/xsessions/dwm.desktop;sudo rm ./temp
 
 # Generate Keyboard.conf
-setxkbmap -print -verbose 10
-echo -e "\e[0;32mAccording to the data above, configure your keyboard \e[0m\n"
-echo -e "\e[0;32mEnter with the layout of keyboard \e[0m"
+echo -e "\e[0;32mEnter with the layout of keyboard, e.g. us | br | ch ... \e[0m"
 read layout
-echo -e "\e[0;32mEnter with the model of keyboard \e[0m"
-read model
 
 cat > ./temp << EOF
 Section "InputClass"
         Identifier "system-keyboard"
         MatchIsKeyboard "on"
         Option "XkbLayout" "$layout"
-        Option "XkbModel" "$model"
+        Option "XkbModel" "pc105"
         Option "XkbOptions" "grp:win_space_toggle"
 EndSection
 EOF
