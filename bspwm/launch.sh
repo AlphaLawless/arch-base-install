@@ -35,16 +35,11 @@ if [[ $aur_pikaur = true ]]; then
   cd /tmp
   git clone https://aur.archlinux.org/pikaur.git
   cd pikaur/;makepkg -si --noconfirm
-  sleep 3
   echo -e "\e[1;31m[*] INSTALLING POLYBAR & DEPENDENCIES...\e[0m"
   pikaur -S --noconfirm polybar
   pikaur -S --noconfirm ttf-iosevka
   pikaur -S --noconfirm ttf-icomoon-feather
-  sleep 3
-  sudo pacman -S python-pywal calc
-  cd /tmp
-  git clone https://aur.archlinux.org/pfetch.git
-  cd pfetch;makepkg -si --noconfirm
+  sudo pacman -S --noconfirm python-pywal calc
 fi
 
 # pikaur -S --noconfirm system76-power
@@ -57,7 +52,38 @@ fi
 echo -e "\e[1;31m[!] MAIN PACKAGES...\e[0m"
 sleep 3
 
-sudo pacman -S --noconfirm xorg bspwm sxhkd dunst rofi firefox kitty neofetch picom unclutter feh cronie nautilus arandr pulseaudio-alsa pavucontrol arc-gtk-theme arc-icon-theme vlc xclip peek kdenlive pacman-contrib
+sudo pacman -S --noconfirm xorg bspwm sxhkd dunst rofi firefox kitty neofetch maim picom unclutter feh cronie nautilus arandr pulseaudio-alsa pavucontrol arc-gtk-theme arc-icon-theme vlc xclip peek kdenlive pacman-contrib
+
+# Install synaptic for touchpad
+echo -e "\e[0;32mYou are on a laptop? [Y/n]\e[0m"
+read response
+
+if [[ ${response,,[A-Z]} == "y" ]]; then
+    sudo pacman -S --noconfirm xf86-input-synaptics
+    sudo mv $DIR/70-synaptics.conf /etc/X11/xorg.conf.d/
+else
+    return 0
+fi
+
+# Install pfetch
+cd /tmp
+git clone https://aur.archlinux.org/pfetch.git
+cd pfetch;makepkg -si --noconfirm
+
+# Generate Keyboard.conf
+echo -e "\e[0;32mEnter with the layout of keyboard, e.g. us | br | ch ... \e[0m"
+read layout
+
+cat > ./temp << EOF
+Section "InputClass"
+        Identifier "system-keyboard"
+        MatchIsKeyboard "on"
+        Option "XkbLayout" "$layout"
+        Option "XkbModel" "pc105"
+        Option "XkbOptions" "grp:win_space_toggle"
+EndSection
+EOF
+sudo cp ./temp /etc/X11/xorg.conf.d/00-keyboard.conf; sudo rm ./temp
 
 if [[ $install_ly = true ]]; then
   cd /tmp
@@ -67,8 +93,7 @@ if [[ $install_ly = true ]]; then
 fi
 
 if [[ $install_lightdm = true ]]; then
-    sudo pacman -S lightdm wget
-    sleep 3
+    sudo pacman -S --noconfirm lightdm wget
     sudo systemctl enable lightdm
     lightdm_install() {
         cat <<EOF
@@ -108,11 +133,10 @@ EOF
 fi
 
 echo -e "\e[1;32m[*] INSTALLING FONTS...\e[0m"
-sleep 3
 
 sudo pacman -S --noconfirm dina-font tamsyn-font bdf-unifont ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid gnu-free-fonts ttf-ibm-plex ttf-liberation ttf-linux-libertine noto-fonts font-bh-ttf ttf-roboto tex-gyre-fonts ttf-ubuntu-font-family ttf-anonymous-pro ttf-cascadia-code ttf-fantasque-sans-mono ttf-fira-mono ttf-hack ttf-fira-code ttf-inconsolata ttf-jetbrains-mono ttf-monofur adobe-source-code-pro-fonts cantarell-fonts inter-font ttf-opensans gentium-plus-font ttf-junicode adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts noto-fonts-cjk noto-fonts-emoji ttf-font-awesome awesome-terminal-fonts
 
-mkdir -p .config/{bspwm,sxhkd,dunst,kitty,picom}
+mkdir -p ~/.config/{bspwm,sxhkd,dunst,kitty,picom}
 
 install -Dm755 /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/bspwmrc
 install -Dm644 /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc
