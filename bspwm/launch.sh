@@ -50,12 +50,11 @@ fi
 # sudo systemctl enable --now auto-cpufreq
 
 echo -e "\e[1;31m[!] MAIN PACKAGES...\e[0m"
-sleep 3
 
 sudo pacman -S --noconfirm xorg bspwm sxhkd dunst rofi firefox kitty neofetch maim picom unclutter feh cronie nautilus arandr pulseaudio-alsa pavucontrol arc-gtk-theme arc-icon-theme vlc xclip peek kdenlive pacman-contrib
 
 # Install synaptic for touchpad
-echo -e "\e[0;32mYou are on a laptop? [Y/n]\e[0m"
+echo -e "\e[0;32mYou are on a laptop to install input synaptics? [Y/n]\e[0m"
 read response
 
 if [[ ${response,,[A-Z]} == "y" ]]; then
