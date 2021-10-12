@@ -135,7 +135,7 @@ echo -e "\e[1;32m[*] INSTALLING FONTS...\e[0m"
 
 sudo pacman -S --noconfirm dina-font tamsyn-font bdf-unifont ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid gnu-free-fonts ttf-ibm-plex ttf-liberation ttf-linux-libertine noto-fonts font-bh-ttf ttf-roboto tex-gyre-fonts ttf-ubuntu-font-family ttf-anonymous-pro ttf-cascadia-code ttf-fantasque-sans-mono ttf-fira-mono ttf-hack ttf-fira-code ttf-inconsolata ttf-jetbrains-mono ttf-monofur adobe-source-code-pro-fonts cantarell-fonts inter-font ttf-opensans gentium-plus-font ttf-junicode adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts noto-fonts-cjk noto-fonts-emoji ttf-font-awesome awesome-terminal-fonts
 
-mkdir -p ~/.config/{bspwm,sxhkd,dunst,kitty,picom}
+mkdir -p ~/.config/{bspwm,sxhkd,dunst,picom}
 
 install -Dm755 /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/bspwmrc
 install -Dm644 /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc
@@ -143,8 +143,8 @@ install -Dm644 /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc
 echo -e "\e[1;31m[*] COPYING AND MOVING FILES...\e[0m"
 cp -r $DIR/bspwmrc ~/.config/bspwm/
 cp -r $DIR/sxhkdrc ~/.config/sxhkd/
-cp -r $DIR/kitty/ ~/.config/kitty/
 cp -r $DIR/dunst/ ~/.config/dunst/
+cp -r $DIR/kitty/ ~/.config/
 sudo mv /arch-base-install/wallpapers/ ~/wallpapers
 sleep 3
 printf "\e[1;32m* DONE! CHANGE NECESSARY FILES BEFORE REBOOT\e[0m"
