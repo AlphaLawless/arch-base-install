@@ -35,6 +35,7 @@ No momento os scripts do KDE e DWM estão em construção.
 
 ### Desktop Environment
 * [KDE](../kde)
+* [GNOME](../gnome)
 
 ## Solução de problemas
 
