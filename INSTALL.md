@@ -1,6 +1,6 @@
 # Installation Guide
 
-- [pt-BR](./doc/INSTALL.md)
+- [pt-BR](./docs/INSTALL.md)
 
 ## Base scripts
 
@@ -45,6 +45,7 @@ At the moment both the KDE and DWM scripts are being written.
 ### Desktop Environment
 
 - [KDE](./kde)
+- [GNOME](./gnome)
 
 ## Troubleshooting
 
