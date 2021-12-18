@@ -41,7 +41,7 @@ How do I use Wi-Fi network here are the steps:
 ```
 3. Fially, to connect to any network using the SSID (or the name, if you prefer):
 ```
-[iwd] station dispositivo connect SSID
+[iwd] station device connect SSID
 ```
 Type your network password and exit the `iwctl` typing `exit`.
 
