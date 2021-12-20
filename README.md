@@ -123,6 +123,7 @@ Personally, I like to partition my BIOS Legacy system using a pseudo graphical i
 BIOS with [MBR](https://wiki.archlinux.org/title/Partitioning#Master_Boot_Record)
 **Mount point** | **Partition**                  | **Partition type**     | **Size**
 ---                   |---                            |---                       |---
+BIOS Legacy           |*/dev/bios_partition*           |BIOS Legacy               | 500M
 [SWAP]                |*/dev/swap_partition*           |Linux swap                | 2G ~ 8G
 /mnt                  |*/dev/root_partition*           |Linux x86-64 root (/)     | 40%~60% of the disk size
 /mnt/home             |*/dev/partição_home*           |Linux x86-64 home         | 40%~60% of the disk size
