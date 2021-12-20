@@ -41,14 +41,13 @@ fi
 echo -e "\e[0;32m[!] MAIN PACKAGES...\e[0m"
 sleep 3
 
-sudo pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xsetroot firefox polkit-gnome neofetch nitrogen lxappearance
-thunar kdenlive pavucontrol pulseaudio-alsa xclip peek vlc picom xmonad xmonad-contrib
+sudo pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xsetroot firefox polkit-gnome neofetch nitrogen lxappearance thunar kdenlive pavucontrol pulseaudio-alsa xclip peek vlc picom xmonad xmonad-contrib
 
-echo -e "\e[0;32m Recompiling and configuring Xmoand...[0m"
+echo -e "\e[0;32m Recompiling and configuring Xmoand...\e[0m"
 mkdir -p ~/.xmonad/
 xmonad --recompile
 
-echo -e "\e[0;32m Install Pfetch...[0m"
+echo -e "\e[0;32m Install Pfetch...\e[0m"
 cd /tmp
 git clone https://aur.archlinux.org/pfetch.git
 cd pfetch;makepkg -si --noconfirm
@@ -77,14 +76,14 @@ EOF
 cat > ./temp << "EOF"
 [Desktop Entry]
 Encoding=UTF-8
-Name=Xmoand
+Name=Xmonad
 Comment=Dynamically tiling X11 window manager
 Exec=xmonad
 Icon=xmoand
 Type=XSession
 EOF
 sudo mkdir /usr/share/xsessions/
-sudo cp ./temp /usr/share/xsessions/dwm.desktop;sudo rm ./temp
+sudo cp ./temp /usr/share/xsessions/xmonad.desktop;sudo rm ./temp
 
 # Generate Keyboard.conf
 echo -e "\e[0;32mEnter with the layout of keyboard, e.g. us | br | ch ... \e[0m"
@@ -111,7 +110,7 @@ fi
 
 # Installation of Lighdm with webkit2 or gtk
 if [[ $install_lightdm = true ]]; then
-    sudo pacman -S lightdm wget
+    sudo pacman -S --noconfirm lightdm wget
     sleep 3
     sudo systemctl enable lightdm
     lightdm_install() {
