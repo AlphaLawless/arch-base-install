@@ -13,11 +13,7 @@ git clone https://github.com/alphalawless/arch-base-install
 ```
 cd arch-base-install
 ```
-3. Dê as permissões para executar o `arch-install.sh` no shell com o comando `chmod`:
-```sh
-chmod +x arch-install.sh
-```
-4. Agora rode o script no shell, pegue um café e siga as instruções:
+3. Agora rode o script no shell, pegue um café e siga as instruções:
 ```sh
 ./arch-install.sh -i
 ```

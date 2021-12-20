@@ -7,25 +7,14 @@
 With everything installed and mounted let's get to the scripts!
 
 1. Clone the arch-base-install repository:
-
 ```
 git clone https://github.com/alphalawless/arch-base-install
 ```
-
 2. Enter the arch-base-install folder:
-
 ```
 cd arch-base-install
 ```
-
-3. Now grant the permissions for executing in the shell with `chmod`:
-
-```sh
-chmod +x arch-install.sh
-```
-
-4. Now run the script - I recommending making or taking a coffee now - and follow the instructions:
-
+3. Now run the script - I recommending making or taking a coffee now - and follow the instructions:
 ```sh
 ./arch-install.sh -i
 ```
