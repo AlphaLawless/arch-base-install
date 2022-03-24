@@ -11,13 +11,14 @@ install_lightdm=true
 aur_paru=false
 aur_pikaur=true
 
+#Dirs
 DIR=`pwd`
 _site="https://github.com/alphalawless"
 repo="arch-base-install/tree/main/wallpapers"
 
 sudo timedatectl set-ntp true
 sudo hwclock --systohc
-sudo reflector -c Brazil -a 12 --sort rate --save /etc/pacman.d/mirrorlist
+# sudo reflector -c Brazil -a 12 --sort rate --save /etc/pacman.d/mirrorlist
 
 sudo pacman -Syyu
 
@@ -42,16 +43,32 @@ if [[ $aur_pikaur = true ]]; then
   sudo pacman -S --noconfirm python-pywal calc
 fi
 
-# pikaur -S --noconfirm system76-power
-# sudo systemctl enable --now system76-power
-# sudo system76-power graphics integrated
-# pikaur -S --noconfirm gnome-shell-extension-system76-power-git
-# pikaur -S --noconfirm auto-cpufreq
-# sudo systemctl enable --now auto-cpufreq
+echo -e "\e[1;32m[!] MAIN PACKAGES...\e[0m"
 
-echo -e "\e[1;31m[!] MAIN PACKAGES...\e[0m"
+sudo pacman -S --noconfirm xorg bspwm sxhkd dunst rofi dmenu firefox neofetch maim picom unclutter feh cronie thunar arandr pulseaudio-alsa pavucontrol arc-gtk-theme arc-icon-theme vlc xclip peek kdenlive pacman-contrib xsettingsd
 
-sudo pacman -S --noconfirm xorg bspwm sxhkd dunst rofi firefox kitty neofetch maim picom unclutter feh cronie nautilus arandr pulseaudio-alsa pavucontrol arc-gtk-theme arc-icon-theme vlc xclip peek kdenlive pacman-contrib
+# Install any terminal
+terminals() {
+    echo -e "\e[1;32m Which terminal emulator do you want install? \e[0m\n"
+    echo -e "\e[1;32m  [1] Kitty \e[0m"
+    echo -e "\e[1;32m  [2] Alacritty \e[0m\n"
+    read reply
+    if [[ $reply == "1" ]]; then
+        echo -e "\e[0;32m* Install Kitty... \e[0m"
+        sudo pacman -S --noconfirm kitty
+        cp -r $DIR/kitty/ ~/.config/
+    elif [[ $reply == "2" ]]; then
+        echo -e "\e[0;32m Install Alacritty... \e[0m"
+        sudo pacman -S --noconfirm alacritty
+        sed -i "s/kitty/alacritty/" $DIR/sxhkdrc
+        sed -i "s/kitty/alacritty" $DIR/bspwmrc
+        cp -r $DIR/alacritty/ ~/.config/
+    else
+        echo -e "\e[0;31m* Invalid Option! \e[0m\n"
+        terminals
+    fi
+}
+terminals
 
 # Install synaptic for touchpad
 echo -e "\e[0;32mYou are on a laptop to install input synaptics? [Y/n]\e[0m"
@@ -87,7 +104,7 @@ sudo cp ./temp /etc/X11/xorg.conf.d/00-keyboard.conf; sudo rm ./temp
 if [[ $install_ly = true ]]; then
   cd /tmp
   git clone https://aur.archlinux.org/ly
-  cd ly;makepkg -si
+  cd ly;makepkg -si --noconfirm
   sudo systemctl enable ly.service
 fi
 
@@ -95,14 +112,9 @@ if [[ $install_lightdm = true ]]; then
     sudo pacman -S --noconfirm lightdm wget
     sudo systemctl enable lightdm
     lightdm_install() {
-        cat <<EOF
-
-        Do you want to install in lightdm:
-
-        [1] webkit2
-        [2] gtk
-
-EOF
+    echo -en "\e[0;32m  Do you want to install in lightdm:\e[0m\n"
+    echo -e "\e[0;32m   [1] webkit2 theme\e[0m"
+    echo -en "\e[0;32m  [2] gtk theme\e[0m\n"
 
     read -p "[*] Choose one option: "
     if [[ $REPLY == "1" ]]; then
@@ -140,11 +152,9 @@ mkdir -p ~/.config/{bspwm,sxhkd,dunst,picom}
 install -Dm755 /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/bspwmrc
 install -Dm644 /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc
 
-echo -e "\e[1;31m[*] COPYING AND MOVING FILES...\e[0m"
+echo -e "\e[1;32m[*] COPYING AND MOVING FILES...\e[0m"
 cp -r $DIR/bspwmrc ~/.config/bspwm/
 cp -r $DIR/sxhkdrc ~/.config/sxhkd/
 cp -r $DIR/dunst/ ~/.config/dunst/
-cp -r $DIR/kitty/ ~/.config/
-sudo mv /arch-base-install/wallpapers/ ~/wallpapers
-sleep 3
+sudo cp -r /arch-base-install/wallpapers/ /usr/share/wallpapers
 printf "\e[1;32m* DONE! CHANGE NECESSARY FILES BEFORE REBOOT\e[0m"
