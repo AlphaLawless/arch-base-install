@@ -36,11 +36,10 @@ fi
 echo -e "\e[0;32m[!] MAIN PACKAGES...\e[0m"
 sleep 5
 
-sudo pacman -S --noconfirm xorg sddm plasma kde-applications firefox neofetch simplescreenrecorder papirus-icon-theme
-peek kdenlive materia-kde flatpak
+sudo pacman -S --noconfirm xorg sddm plasma kde-applications firefox neofetch simplescreenrecorder papirus-icon-theme peek kdenlive materia-kde flatpak
 
 sudo systemctl enable sddm
 
 printf "\e[1;32mREBOOTING IN 5..4..3..2..1..\e[0m"
 sleep 5
-sudo reboot
+reboot
