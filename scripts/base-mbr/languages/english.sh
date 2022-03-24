@@ -6,8 +6,8 @@ packages() {
 [*] What's the packages you want to install?
 
 [*] Choose one -
-[1] Main packages
-[2] Soft Packages
+[1] Main packages (recommend beginners)
+[2] Soft Packages (advanced user)
 
 EOF
 

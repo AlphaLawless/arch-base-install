@@ -6,8 +6,8 @@ packages() {
 [*] Quais os pacotes você quer instalar?
 
 [*] Escolha um -
-[1] Pacotes principais
-[2] Pacotes essenciais
+[1] Pacotes principais (recomendado para iniciantes)
+[2] Pacotes essenciais (usuários avançados)
 
 EOF
 
