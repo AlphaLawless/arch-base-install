@@ -45,7 +45,7 @@ sleep 3
 sudo pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xsetroot firefox polkit-gnome neofetch nitrogen lxappearance
 thunar kdenlive pavucontrol pulseaudio-alsa xclip peek vlc picom
 
-echo -e "\e[0;32m Install Pfetch...[0m"
+echo -e "\e[0;32m Install Pfetch...\e[0m"
 cd /tmp
 git clone https://aur.archlinux.org/pfetch.git
 cd pfetch;makepkg -si --noconfirm
@@ -111,13 +111,13 @@ sudo cp ./temp /etc/X11/xorg.conf.d/00-keyboard.conf; sudo rm ./temp
 if [[ $install_ly = true ]]; then
     cd /tmp
     git clone https://aur.archlinux.org/ly
-    cd ly;makepkg -si
+    cd ly;makepkg -si --noconfirm
     sudo systemctl enable ly
 fi
 
 # Installation of Lighdm with webkit2 or gtk
 if [[ $install_lightdm = true ]]; then
-    sudo pacman -S lightdm wget
+    sudo pacman -S --noconfirm lightdm wget
     sleep 3
     sudo systemctl enable lightdm
     lightdm_install() {
