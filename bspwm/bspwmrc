@@ -60,6 +60,7 @@ bspc config presel_feedback_color     "#282C34" # ?
 
 # Custom rules
 bspc rule -a kitty desktop='^2' state=tiled follow=on
+bspc rule -a alacritty desktop='^2' state=tiled follow=on
 bspc rule -a Virt-manager desktop='^5' state=floating follow=on
 bspc rule -a firefox desktop='^3' state=tiled follow=on
 bspc rule -a Gimp desktop='^5' state=tiled follow=on focus=on
