@@ -66,7 +66,7 @@ EOF
 }
 
 videoDriverInstall(){
-    read -p "[*] Você quer instalar os drivers de vídeo agora? [Y/n]"
+    read -p "[*] Você quer instalar os drivers de vídeo agora? [Y/n] "
 
 	if [[ ${REPLY,,[A-Z]} == "y" ]]; then
 		cat <<- EOF
