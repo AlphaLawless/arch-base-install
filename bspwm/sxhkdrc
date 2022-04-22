@@ -10,7 +10,7 @@ super + {_, shift+, alt+}Print
 
 # terminal emulator
 super + Return
-  kitty
+  term
 
 # lockscreen
 alt + shift + x
