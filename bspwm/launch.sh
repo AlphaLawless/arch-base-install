@@ -138,14 +138,11 @@ sudo pacman -S --noconfirm dina-font tamsyn-font ttf-bitstream-vera ttf-croscore
 
 mkdir -p ~/.config/{bspwm,sxhkd,dunst,picom}
 
-install -Dm 755 /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/bspwmrc
-install -Dm 644 /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc
+echo -e "\e[1;32m[*] INSTALL AND MOVING FILES...\e[0m"
+install -Dm 755 "$DIR"/bspwmrc ~/.config/bspwm/bspwmrc
+install -Dm 644 "$DIR"/sxhkdrc ~/.config/sxhkd/sxhkdrc
+cp -r "$DIR"/dunst/*           ~/.config/dunst
 
-echo -e "\e[1;32m[*] COPYING AND MOVING FILES...\e[0m"
-cp -r "$DIR"/bspwmrc ~/.config/bspwm/
-cp -r "$DIR"/sxhkdrc ~/.config/sxhkd/
-cp -r "$DIR"/dunst/ ~/.config/dunst/
-
-sudo cp -r /arch-base-install/wallpapers/ /usr/share/wallpapers
+sudo cp -r /arch-base-install/wallpapers/ "$HOME"/wallpapers
 
 echo -e "\e[1;32m* DONE! CHANGE NECESSARY FILES BEFORE REBOOT\e[0m\n"
