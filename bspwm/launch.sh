@@ -30,9 +30,9 @@ if [[ $aur_paru = true ]]; then
   git clone https://aur.archlinux.org/paru-bin.git
   cd paru-bin/;makepkg -si --noconfirm
   echo -e "\e[1;32m[*] INSTALLING POLYBAR & DEPENDENCIES...\e[0m"
-  pikaur -S --noconfirm polybar
-  pikaur -S --noconfirm ttf-iosevka
-  pikaur -S --noconfirm ttf-icomoon-feather
+  paru -S --noconfirm polybar
+  paru -S --noconfirm ttf-iosevka
+  paru -S --noconfirm ttf-icomoon-feather
   sudo pacman -S --noconfirm python-pywal calc
 fi
 
@@ -105,9 +105,8 @@ if [[ $install_lightdm = true ]]; then
     echo -e "\e[0;32m [1] webkit2 theme\e[0m\n"
     echo -e "\e[0;32m [2] gtk theme\e[0m\n"
 
-    echo -e "\e[0;32m[*] Choose one option: \e[0m"
-    read reply
-    if [[ $reply == "1" ]]; then
+    read -r "[*] Choose one option: "
+    if [[ $REPLY == "1" ]]; then
         sudo pacman -S --noconfirm lightdm-webkit2-greeter
         sudo sed -i 's/^#greeter-session.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
         cd /tmp ; mkdir glorious
@@ -118,7 +117,7 @@ if [[ $install_lightdm = true ]]; then
         sudo mv glorious/ /usr/share/lightdm-webkit/themes/
         sudo sed -i 's/debug_mode.*/debug_mode          = true/g' /etc/lightdm/lightdm-webkit2-greeter.conf
         sudo sed -i 's/webkit_theme.*/webkit_theme        = glorious/g' /etc/lightdm/lightdm-webkit2-greeter.conf
-    elif [[ $reply == "2" ]]; then
+    elif [[ $REPLY == "2" ]]; then
         sudo pacman -S --noconfirm lightdm-gtk-greeter
         sudo sed -i 's/^#greeter-session.*/greeter-session=lightdm-gtk-greeter/' /etc/lightdm/lightdm.conf
         sudo sed -i '/^#greeter-hide-users=/s/#//' /etc/lightdm/lightdm.conf
