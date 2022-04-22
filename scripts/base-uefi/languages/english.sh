@@ -34,7 +34,7 @@ EOF
         tlp_install() {
             read -p "Are you on a latop? [y/N] "
 
-            if [[ ${REPLY,,[A-Z]} = "y" ]]; then
+            if [[ ${REPLY,,[A-Z]} == "y" ]]; then
                 echo "INSTALL TLP"
                 pacman -S tlp tlp-rdw
                 systemctl enable tlp.service
@@ -64,19 +64,9 @@ EOF
 }
 
 videoDriverInstall(){
-	cat <<- EOF
+	read -p "[*] Do you want to install video drivers now? [Y/n] "
 
-		[*] Want to install video drivers now?
-
-		[*] Choose one -
-		[1] Yes
-		[2] No
-
-	EOF
-
-	read -p "[?] Select option: "
-
-	if [[ $REPLY == "1" ]]; then
+	if [[ ${REPLY,,[A-Z]} == "y" ]]; then
 		cat <<- EOF
 			[*] What's your video card?
 
@@ -101,7 +91,7 @@ videoDriverInstall(){
 			echo "[!] Invalid Option: "
 			sleep 3 ; clear ; videoDriverInstall
 		fi
-	elif [[ $REPLY == "2" ]]; then
+	elif [[ ${REPLY,,[A-Z]} == "n" ]]; then
 		return 0
 	fi
 }

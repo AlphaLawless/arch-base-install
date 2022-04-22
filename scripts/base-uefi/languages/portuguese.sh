@@ -35,7 +35,7 @@ EOF
         tlp_install() {
             read -p "Você está em um laptop? [y/N] "
 
-            if [[ ${REPLY,,[A-Z]} = "y" ]]; then
+            if [[ ${REPLY,,[A-Z]} == "y" ]]; then
                 echo "INSTALANDO TLP"
                 pacman -S tlp tlp-rdw
                 systemctl enable tlp.service
@@ -66,19 +66,9 @@ EOF
 }
 
 videoDriverInstall(){
-	cat <<- EOF
+    read -p "[*] Você quer instalar os drivers de vídeo agora? [Y/n]"
 
-		[*] Você quer instalar os drivers de video agora?
-
-		[*] Escolha um -
-		[1] Sim
-		[2] Não
-
-	EOF
-
-	read -p "[?] Selecione a opção, digitando 1 ou 2: "
-
-	if [[ $REPLY == "1" ]]; then
+	if [[ ${REPLY,,[A-Z]} == "y" ]]; then
 		cat <<- EOF
 			[*] Qual é a sua placa de vídeo?
 
@@ -103,7 +93,7 @@ videoDriverInstall(){
 			echo "[!] Opção inválida: "
 			sleep 3 ; clear ; videoDriverInstall
 		fi
-	elif [[ $REPLY == "2" ]]; then
+	elif [[ ${REPLY,,[A-Z]} == "n" ]]; then
 		return 0
 	fi
 }
@@ -156,4 +146,3 @@ createUser() {
 packages
 videoDriverInstall
 createUser
-
