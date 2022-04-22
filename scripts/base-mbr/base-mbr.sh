@@ -59,7 +59,5 @@ elif [[ $REPLY == "2" ]]; then
   bash "/arch-base-install/scripts/base-mbr/languages/english.sh"
 fi
 
-sleep 2
 clear
-printf "\e[1;132mDone! Type exit, umount -a and reboot or umount -R /mnt and shutdown -h now.\e[0m"
-
+echo -e "\e[1;132mDone! Type exit, umount -a and reboot or umount -R /mnt and shutdown -h now.\e[0m\n"
