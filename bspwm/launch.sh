@@ -38,7 +38,7 @@ fi
 
 echo -e "\e[1;32m[!] MAIN PACKAGES...\e[0m"
 
-sudo pacman -S --noconfirm xorg bspwm sxhkd dunst rofi dmenu firefox neofetch maim picom unclutter feh cronie thunar arandr pulseaudio-alsa pavucontrol arc-gtk-theme arc-icon-theme vlc xclip peek kdenlive pacman-contrib xsettingsd
+sudo pacman -S --noconfirm xorg bspwm sxhkd dunst rofi dmenu firefox neofetch maim picom unclutter feh cronie thunar arandr pulseaudio-alsa pavucontrol arc-gtk-theme arc-icon-theme vlc xclip pacman-contrib xsettingsd
 
 # Install any terminal
 terminals() {
@@ -105,8 +105,9 @@ if [[ $install_lightdm = true ]]; then
     echo -e "\e[0;32m [1] webkit2 theme\e[0m\n"
     echo -e "\e[0;32m [2] gtk theme\e[0m\n"
 
-    read -p "[*] Choose one option: "
-    if [[ $REPLY == "1" ]]; then
+    echo -e "\e[0;32m[*] Choose one option: \e[0m"
+    read reply
+    if [[ $reply == "1" ]]; then
         sudo pacman -S --noconfirm lightdm-webkit2-greeter
         sudo sed -i 's/^#greeter-session.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
         cd /tmp ; mkdir glorious
@@ -117,7 +118,7 @@ if [[ $install_lightdm = true ]]; then
         sudo mv glorious/ /usr/share/lightdm-webkit/themes/
         sudo sed -i 's/debug_mode.*/debug_mode          = true/g' /etc/lightdm/lightdm-webkit2-greeter.conf
         sudo sed -i 's/webkit_theme.*/webkit_theme        = glorious/g' /etc/lightdm/lightdm-webkit2-greeter.conf
-    elif [[ $REPLY == "2" ]]; then
+    elif [[ $reply == "2" ]]; then
         sudo pacman -S --noconfirm lightdm-gtk-greeter
         sudo sed -i 's/^#greeter-session.*/greeter-session=lightdm-gtk-greeter/' /etc/lightdm/lightdm.conf
         sudo sed -i '/^#greeter-hide-users=/s/#//' /etc/lightdm/lightdm.conf
