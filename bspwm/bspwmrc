@@ -8,7 +8,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 $HOME/.config/polybar/launch.sh --cuts &
 
 # wallpaper with feh
-feh --bg-fill /usr/share/wallpapers/jellyfish_astronaut1920x1080.jpg &
+feh --bg-fill $HOME/wallpapers/jellyfish_astronaut.jpg &
 
 # set keyboard
 # setxkbmap -option grp:alt_shit_toggle us & # If you have keyboard american
