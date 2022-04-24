@@ -105,7 +105,7 @@ if [[ $install_lightdm = true ]]; then
     echo -e "\e[0;32m [1] webkit2 theme\e[0m\n"
     echo -e "\e[0;32m [2] gtk theme\e[0m\n"
 
-    read -r "[*] Choose one option: "
+    read -p "[*] Choose one option: "
     if [[ $REPLY == "1" ]]; then
         sudo pacman -S --noconfirm lightdm-webkit2-greeter
         sudo sed -i 's/^#greeter-session.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
