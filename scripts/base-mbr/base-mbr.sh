@@ -14,7 +14,7 @@ body() {
   if [[ $REPLY == "1" ]]; then
     ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
     hwclock --systohc
-    sed -i '393s/.//' /etc/locale.gen # uncomment in line 393 pt_BR.UTF-8 UTF-8
+    sed -i 's/#pt_BR.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/' /etc/locale.gen
     locale-gen
     echo "LANG=pt_BR.UTF-8" >> /etc/locale.conf
     echo "KEYMAP=br-abnt2" >> /etc/vconsole.conf
@@ -31,7 +31,7 @@ body() {
     echo -e "Enter with your City now: "
     read city
     ln -sf /usr/share/zoneinfo/${region}/${city} /etc/localtime
-    sed -i '177s/.//' /etc/locale.gen # uncomment in line 177 for en_US.UTF-8 UTF-8
+    sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
     echo "LANG=en_US.UTF-8" >> /etc/locale.conf
     echo "Enter with your keyboard map: "
     read keyboard
@@ -45,8 +45,7 @@ body() {
     bash "/arch-base-install/scripts/base-mbr/languages/root-passwordEN.sh"
   else
     echo "[!] Invalid option! "
-    sleep 2
-    clear
+    sleep 1 ; clear
     body
   fi
   return $REPLY
