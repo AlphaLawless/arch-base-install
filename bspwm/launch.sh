@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Prod
+# Install BSPWM
 
 install_lightdm=true
 
@@ -51,7 +51,7 @@ install_synaptic() {
     read response
     if [[ ${response,,[A-Z]} == "y" ]]; then
         sudo pacman -S --noconfirm xf86-input-synaptics
-        sudo mv "$DIR"/70-synaptics.conf /etc/X11/xorg.conf.d/
+        sudo mv `pwd`/70-synaptics.conf /etc/X11/xorg.conf.d/
     else
         return 0
     fi
@@ -82,8 +82,9 @@ if [[ $install_lightdm = true ]]; then
     echo -e "\e[0;32m [1] webkit2 theme\e[0m\n"
     echo -e "\e[0;32m [2] gtk theme\e[0m\n"
 
-    read -p "[*] Choose one option: "
-    if [[ $REPLY == "1" ]]; then
+    echo -e "\e[0;32m[*] Choose one option: \e[0m"
+    read response
+    if [[ $response == "1" ]]; then
         sudo pacman -S --noconfirm lightdm-webkit2-greeter
         sudo sed -i 's/^#greeter-session.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
         cd /tmp ; mkdir glorious
@@ -94,7 +95,7 @@ if [[ $install_lightdm = true ]]; then
         sudo mv glorious/ /usr/share/lightdm-webkit/themes/
         sudo sed -i 's/debug_mode.*/debug_mode          = true/g' /etc/lightdm/lightdm-webkit2-greeter.conf
         sudo sed -i 's/webkit_theme.*/webkit_theme        = glorious/g' /etc/lightdm/lightdm-webkit2-greeter.conf
-    elif [[ $REPLY == "2" ]]; then
+    elif [[ $response == "2" ]]; then
         sudo pacman -S --noconfirm lightdm-gtk-greeter
         sudo sed -i 's/^#greeter-session.*/greeter-session=lightdm-gtk-greeter/' /etc/lightdm/lightdm.conf
         sudo sed -i '/^#greeter-hide-users=/s/#//' /etc/lightdm/lightdm.conf
@@ -120,21 +121,21 @@ install_bspwm() {
 
     mkdir -p "$_BSPWMDIR" && mkdir -p "$_SXHKDDIR"
 
-    install -Dm 755 `pwd`/.fehbg       "$HOME"
-    install -Dm 644 `pwd`/.Xresources  "$HOME"
-    install -Dm 644 `pwd`/.xsettingsd  "$HOME"
+    install -Dm 755 `pwd`/.fehbg       "$HOME"/.fehbg
+    install -Dm 644 `pwd`/.Xresources  "$HOME"/.Xresources
+    install -Dm 644 `pwd`/.xsettingsd  "$HOME"/.xsettingsd
 
-    cp -r `pwd`/.Xresources.d          "$HOME"
+    cp -r `pwd`/.Xresources.d          "$HOME"/.Xresources.d
 
-    cp -r `pwd`/networkmanager-dmenu   "$HOME"
+    cp -r `pwd`/networkmanager-dmenu   "$HOME"/.config/networkmanager-dmenu
 
-    cp -r `pwd`/alacritty              "$_BSPWMDIR"
-    cp -r `pwd`/polybar                "$_BSPWMDIR"
-    cp -r `pwd`/rofi                   "$_BSPWMDIR"
-    cp -r `pwd`/themes                 "$_BSPWMDIR"
-    cp -r `pwd`/bin                    "$_BSPWMDIR"
-    cp -r `pwd`/dunstrc                "$_BSPWMDIR"
-    cp -r `pwd`/picom.conf             "$_BSPWMDIR"
+    cp -r `pwd`/alacritty              "$_BSPWMDIR"/alacritty
+    cp -r `pwd`/polybar                "$_BSPWMDIR"/polybar
+    cp -r `pwd`/rofi                   "$_BSPWMDIR"/rofi
+    cp -r `pwd`/themes                 "$_BSPWMDIR"/themes
+    cp -r `pwd`/bin                    "$_BSPWMDIR"/bin
+    cp -r `pwd`/dunstrc                "$_BSPWMDIR"/dunstrc
+    cp -r `pwd`/picom.conf             "$_BSPWMDIR"/picom.conf
 
     chmod +x "$_BSPWMDIR"/bin/*
     chmod +x "$_BSPWMDIR"/rofi/bin/*
@@ -144,12 +145,12 @@ install_bspwm() {
     install -Dm 644 `pwd`/dunstrc      "$_BSPWMDIR"/dunstrc
     install -Dm 644 `pwd`/picom.conf   "$_BSPWMDIR"/picom.conf
 
-    install -Dm 644 `pwd`/sxhkdrc      "$_SXHKDDIR"
+    install -Dm 644 `pwd`/sxhkdrc      "$_SXHKDDIR"/sxhkdrc
 }
 install_bspwm
 
 install_dependences() {
-    echo -e "\e[0;32mInstall wallpapers\e[0m"
+    echo -e "\e[0;32mInstall Wallpapers\e[0m"
     git clone https://github.com/AA-Linux/aa-wallpapers /tmp/wallpapers
     cd /tmp/wallpapers ; bash install.sh
 
@@ -157,17 +158,33 @@ install_dependences() {
     git clone https://github.com/AA-Linux/aa-thunar /tmp/thunar
     cd /tmp/thunar ; bash install.sh
 
+    echo -e "\e[0;32mInstall HTOP\e[0m"
+    git clone https://github.com/AA-Linux/aa-htop /tmp/htop
+    cd /tmp/htop ; bash install.sh
+
     echo -e "\e[0;32mInstall scripts\e[0m"
     git clone https://github.com/AlphaLawless/scripts /tmp/scripts
-    cd /tmp/scripts ; chmod +x * ; sudo rsync -av --exclude=".*" /tmp/scripts/* /usr/local/bin
+    cd /tmp/scripts ; chmod +x * ; sudo cp /tmp/scripts/* /usr/local/bin ; sudo rm -rf /usr/local/bin/.github
 
     echo -e "\e[0;32mInstall Archcraft workers\e[0m"
     git clone https://github.com/AA-Linux/aa-archcraft /tmp/archcraft
     cd /tmp/archcraft ; bash install.sh
 
-    echo -e "\e[0;32mInstall HTOP\e[0m"
-    git clone https://github.com/AA-Linux/aa-htop /tmp/htop
-    cd /tmp/htop ; bash install.sh
+    echo -e "\e[0;32mInstall Fonts\e[0m"
+    git clone https://github.com/AA-Linux/aa-fonts /tmp/fonts
+    cd /tmp/fonts ; bash install.sh
+
+    echo -e "\e[0;32mInstall GTK-3.0\e[0m"
+    git clone https://github.com/AA-Linux/aa-gtk /tmp/gtk
+    cd /tmp/gtk ; bash install.sh
+
+    echo -e "\e[0;32mInstall Viewnior\e[0m"
+    git clone https://github.com/AA-Linux/aa-viewnior /tmp/viewnior
+    cd /tmp/viewnior ; bash install.sh
+
+    echo -e "\e[0;32mInstall Cursors\e[0m"
+    git clone https://github.com/AA-Linux/aa-cursors /tmp/cursors
+    cd /tmp/cursors ; bash install.sh
 }
 install_dependences
 
