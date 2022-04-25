@@ -1,0 +1,42 @@
+! -------------------------------------------------+
+! @author: Alpha Vylly (AlphaLawless)              |
+! (C) 2020-2021 Aditya Shakya (GNU-GPL3)           |
+!                                                  |
+! Colors Schemes resources                         |
+! -------------------------------------------------+
+
+*background: #2E3440
+*foreground: #D8DEE9
+*cursorColor:#D8DEE9
+
+! Black & Pink
+*color0:     #3B4252
+*color8:     #4C566A
+
+! Red & Pink
+*color1:     #BF616A
+*color9:     #BF616A
+
+! Green & Pink
+*color2:     #A3BE8C
+*color10:    #A3BE8C
+
+! Yellow & Pink
+*color3:     #EBCB8B
+*color11:    #EBCB8B
+
+! Blue & Pink
+*color4:     #81A1C1
+*color12:    #81A1C1
+
+! Magenta & Pink
+*color5:     #B48EAD
+*color13:    #B48EAD
+
+! Cyan & Pink
+*color6:     #88C0D0
+*color14:    #8FBCBB
+
+! White & Pink
+*color7:     #E5E9F0
+*color15:    #ECEFF4
