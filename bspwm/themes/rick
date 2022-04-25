@@ -1,0 +1,45 @@
+! --------------------------------------------------------------------------------+
+! -------------------------------------------------+
+! @author: Alpha Vylly (AlphaLawless)              |
+! (C) 2020-2021 Aditya Shakya (GNU-GPL3)           |
+!                                                  |
+! Rick colors Schemes resources                    |
+! -------------------------------------------------+
+! --------------------------------------------------------------------------------+
+
+*background: #0D0E0D
+*foreground: #E5E0DC
+*cursorColor:#E5E0DC
+
+! Black
+*color0:     #232323
+*color8:     #A09C9A
+
+! Red
+*color1:     #388D53
+*color9:     #388D53
+
+! Green
+*color2:     #448E52
+*color10:    #448E52
+
+! Yellow
+*color3:     #53AD9F
+*color11:    #53AD9F
+
+! Blue
+*color4:     #5BC0BC
+*color12:    #5BC0BC
+
+! Magenta
+*color5:     #57C5D1
+*color13:    #57C5D1
+
+! Cyan
+*color6:     #ACBEC0
+*color14:    #ACBEC0
+
+! White
+*color7:     #E5E0DC
+*color15:    #E5E0DC
+

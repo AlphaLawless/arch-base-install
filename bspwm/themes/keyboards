@@ -1,0 +1,45 @@
+! --------------------------------------------------------------------------------+
+! -------------------------------------------------+
+! @author: Alpha Vylly (AlphaLawless)              |
+! (C) 2020-2021 Aditya Shakya (GNU-GPL3)           |
+!                                                  |
+! Keyboards colors Schemes resources               |
+! -------------------------------------------------+
+! --------------------------------------------------------------------------------+
+
+*background: #1D1F28
+*foreground: #FDFDFD
+*cursorColor:#FDFDFD
+
+! Black
+*color0:     #282A36
+*color8:     #414458
+
+! Red
+*color1:     #F37F97
+*color9:     #FF4971
+
+! Green
+*color2:     #5ADECD
+*color10:    #5ADECD
+
+! Yellow
+*color3:     #F2A272
+*color11:    #FF8037
+
+! Blue
+*color4:     #8897F4
+*color12:    #556FFF
+
+! Magenta
+*color5:     #C574DD
+*color13:    #B043D1
+
+! Cyan
+*color6:     #79E6F3
+*color14:    #3FDCEE
+
+! White
+*color7:     #FDFDFD
+*color15:    #BEBEC1
+

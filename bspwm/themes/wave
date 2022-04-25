@@ -1,0 +1,45 @@
+! --------------------------------------------------------------------------------+
+! -------------------------------------------------+
+! @author: Alpha Vylly (AlphaLawless)              |
+! (C) 2020-2021 Aditya Shakya (GNU-GPL3)           |
+!                                                  |
+! Wave colors Schemes resources                    |
+! -------------------------------------------------+
+! --------------------------------------------------------------------------------+
+
+*background: #323F4E
+*foreground: #F8F8F2
+*cursorColor:#F8F8F2
+
+! Black
+*color0:     #3D4C5F
+*color8:     #56687E
+
+! Red
+*color1:     #F48FB1
+*color9:     #EE4F84
+
+! Green
+*color2:     #A1EFD3
+*color10:    #53E2AE
+
+! Yellow
+*color3:     #F1FA8C
+*color11:    #F1FF52
+
+! Blue
+*color4:     #92B6F4
+*color12:    #6498EF
+
+! Magenta
+*color5:     #BD99FF
+*color13:    #985EFF
+
+! Cyan
+*color6:     #87DFEB
+*color14:    #24D1E7
+
+! White
+*color7:     #F8F8F2
+*color15:    #E5E5E5
+

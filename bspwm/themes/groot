@@ -1,0 +1,45 @@
+! --------------------------------------------------------------------------------+
+! -------------------------------------------------+
+! @author: Alpha Vylly (AlphaLawless)              |
+! (C) 2020-2021 Aditya Shakya (GNU-GPL3)           |
+!                                                  |
+! Groot colors Schemes resources                   |
+! -------------------------------------------------+
+! --------------------------------------------------------------------------------+
+
+*background: #0F1318
+*foreground: #E3E3E1
+*cursorColor:#E3E3E1
+
+! Black
+*color0:     #23282D
+*color8:     #9E9E9D
+
+! Red
+*color1:     #916738
+*color9:     #916738
+
+! Green
+*color2:     #98764A
+*color10:    #98764A
+
+! Yellow
+*color3:     #699553
+*color11:    #699553
+
+! Blue
+*color4:     #A39E63
+*color12:    #A39E63
+
+! Magenta
+*color5:     #9C9B96
+*color13:    #9C9B96
+
+! Cyan
+*color6:     #CCC8A5
+*color14:    #CCC8A5
+
+! White
+*color7:     #E3E3E1
+*color15:    #E3E3E1
+

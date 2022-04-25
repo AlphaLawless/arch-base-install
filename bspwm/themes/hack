@@ -1,0 +1,45 @@
+! --------------------------------------------------------------------------------+
+! -------------------------------------------------+
+! @author: Alpha Vylly (AlphaLawless)              |
+! (C) 2020-2021 Aditya Shakya (GNU-GPL3)           |
+!                                                  |
+! Hack colors Schemes resources                    |
+! -------------------------------------------------+
+! --------------------------------------------------------------------------------+
+
+*background: #01161B
+*foreground: #66FFFF
+*cursorColor:#66FFFF
+
+! Black
+*color0:     #142A2F
+*color8:     #142A2F
+
+! Red
+*color1:     #007B82
+*color9:     #007B82
+
+! Green
+*color2:     #028C94
+*color10:    #028C94
+
+! Yellow
+*color3:     #039CA4
+*color11:    #039CA4
+
+! Blue
+*color4:     #04ACB5
+*color12:    #04ACB5
+
+! Magenta
+*color5:     #05BBC5
+*color13:    #05BBC5
+
+! Cyan
+*color6:     #06CCD7
+*color14:    #06CCD7
+
+! White
+*color7:     #A3B5B8
+*color15:    #A3B5B8
+

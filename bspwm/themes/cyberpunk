@@ -1,0 +1,44 @@
+! --------------------------------------------------------------------------------+
+! -------------------------------------------------+
+! @author: Alpha Vylly (AlphaLawless)              |
+! (C) 2020-2021 Aditya Shakya (GNU-GPL3)           |
+!                                                  |
+! Cyberpunk colors Schemes resources               |
+! -------------------------------------------------+
+! --------------------------------------------------------------------------------+
+
+*background: #030315
+*foreground: #CDC7D3
+*cursorColor:#CDC7D3
+
+! Black
+*color0:     #19192D
+*color8:     #8F8B93
+
+! Red
+*color1:     #553B88
+*color9:     #553B88
+
+! Green
+*color2:     #364995
+*color10:    #364995
+
+! Yellow
+*color3:     #60559D
+*color11:    #60559D
+
+! Blue
+*color4:     #9F6495
+*color12:    #9F6495
+
+! Magenta
+*color5:     #CB7192
+*color13:    #CB7192
+
+! Cyan
+*color6:     #6398C6
+*color14:    #6398C6
+
+! White
+*color7:     #CDC7D3
+*color15:    #CDC7D3

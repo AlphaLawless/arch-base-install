@@ -1,0 +1,45 @@
+! --------------------------------------------------------------------------------+
+! -------------------------------------------------+
+! @author: Alpha Vylly (AlphaLawless)              |
+! (C) 2020-2021 Aditya Shakya (GNU-GPL3)           |
+!                                                  |
+! Manhattan colors Schemes resources               |
+! -------------------------------------------------+
+! --------------------------------------------------------------------------------+
+
+*background: #282F37
+*foreground: #F1FCF9
+*cursorColor:#F1FCF9
+
+! Black
+*color0:     #3C434B
+*color8:     #465463
+
+! Red
+*color1:     #DB86BA
+*color9:     #D04E9D
+
+! Green
+*color2:     #74DD91
+*color10:    #4BC66D
+
+! Yellow
+*color3:     #E49186
+*color11:    #DB695B
+
+! Blue
+*color4:     #75DBE1
+*color12:    #3DBAC2
+
+! Magenta
+*color5:     #B4A1DB
+*color13:    #825ECE
+
+! Cyan
+*color6:     #9EE9EA
+*color14:    #62CDCD
+
+! White
+*color7:     #F1FCF9
+*color15:    #E0E5E5
+

@@ -1,0 +1,45 @@
+! --------------------------------------------------------------------------------+
+! -------------------------------------------------+
+! @author: Alpha Vylly (AlphaLawless)              |
+! (C) 2020-2021 Aditya Shakya (GNU-GPL3)           |
+!                                                  |
+! Gruvbox colors Schemes resources                 |
+! -------------------------------------------------+
+! --------------------------------------------------------------------------------+
+
+*background: #282828
+*foreground: #EBDBB2
+*cursorColor:#EBDBB2
+
+! Black
+*color0:     #3C3C3C
+*color8:     #928374
+
+! Red
+*color1:     #CC241D
+*color9:     #FB4934
+
+! Green
+*color2:     #98971A
+*color10:    #B8BB26
+
+! Yellow
+*color3:     #D79921
+*color11:    #FABD2F
+
+! Blue
+*color4:     #458588
+*color12:    #83A598
+
+! Magenta
+*color5:     #B16286
+*color13:    #D3869B
+
+! Cyan
+*color6:     #689D6A
+*color14:    #8EC07C
+
+! White
+*color7:     #A89984
+*color15:    #EBDBB2
+

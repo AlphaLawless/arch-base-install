@@ -1,0 +1,45 @@
+! --------------------------------------------------------------------------------+
+! -------------------------------------------------+
+! @author: Alpha Vylly (AlphaLawless)              |
+! (C) 2020-2021 Aditya Shakya (GNU-GPL3)           |
+!                                                  |
+! Tealize colors Schemes resources                 |
+! -------------------------------------------------+
+! --------------------------------------------------------------------------------+
+
+*background: #232735
+*foreground: #7C84A8
+*cursorColor:#7C84A8
+
+! Black
+*color0:     #32363D
+*color8:     #50545B
+
+! Red
+*color1:     #E06B74
+*color9:     #EA757E
+
+! Green
+*color2:     #98C379
+*color10:    #A2CD83
+
+! Yellow
+*color3:     #E5C07A
+*color11:    #EFCA84
+
+! Blue
+*color4:     #62AEEF
+*color12:    #6CB8F9
+
+! Magenta
+*color5:     #C778DD
+*color13:    #D282E7
+
+! Cyan
+*color6:     #55B6C2
+*color14:    #5FC0CC
+
+! White
+*color7:     #ABB2BF
+*color15:    #B5BCC9
+

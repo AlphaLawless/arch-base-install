@@ -1,0 +1,45 @@
+! --------------------------------------------------------------------------------+
+! -------------------------------------------------+
+! @author: Alpha Vylly (AlphaLawless)              |
+! (C) 2020-2021 Aditya Shakya (GNU-GPL3)           |
+!                                                  |
+! Forest colors Schemes resources                  |
+! -------------------------------------------------+
+! --------------------------------------------------------------------------------+
+
+*background: #222D32
+*foreground: #C4C7C5
+*cursorColor:#AFBFBF
+
+! Black
+*color0:     #263640
+*color8:     #4A697D
+
+! Red
+*color1:     #EC7875
+*color9:     #FB8784
+
+! Green
+*color2:     #61C766
+*color10:    #70D675
+
+! Yellow
+*color3:     #FDD835
+*color11:    #FFE744
+
+! Blue
+*color4:     #42A5F5
+*color12:    #51B4FF
+
+! Magenta
+*color5:     #BA68C8
+*color13:    #C979D7
+
+! Cyan
+*color6:     #4DD0E1
+*color14:    #5CDFF0
+
+! White
+*color7:     #BFBAAC
+*color15:    #FDF6E3
+

@@ -1,0 +1,45 @@
+! --------------------------------------------------------------------------------+
+! -------------------------------------------------+
+! @author: Alpha Vylly (AlphaLawless)              |
+! (C) 2020-2021 Aditya Shakya (GNU-GPL3)           |
+!                                                  |
+! Blade colors Schemes resources                   |
+! -------------------------------------------------+
+! --------------------------------------------------------------------------------+
+
+*background: #0c1018
+*foreground: #f1c4c0
+*cursorColor:#F1C4C0
+
+! Black & Pink
+*color0:     #20242c
+*color8:     #a88986
+
+! Red & Pink
+*color1:     #f8506d
+*color9:     #f8506d
+
+! Green & Pink
+*color2:     #f06576
+*color10:    #f06576
+
+! Yellow & Pink
+*color3:     #cf916e
+*color11:    #cf916e
+
+! Blue & Pink
+*color4:     #fa3c82
+*color12:    #fa3c82
+
+! Magenta & Pink
+*color5:     #e9698e
+*color13:    #e9698e
+
+! Cyan & Pink
+*color6:     #ea7288
+*color14:    #ea7288
+
+! White & Pink
+*color7:     #f1c4c0
+*color15:    #f1c4c0
+

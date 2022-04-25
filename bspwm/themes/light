@@ -1,0 +1,45 @@
+! --------------------------------------------------------------------------------+
+! -------------------------------------------------+
+! @author: Alpha Vylly (AlphaLawless)              |
+! (C) 2020-2021 Aditya Shakya (GNU-GPL3)           |
+!                                                  |
+! Light colors Schemes resources                   |
+! -------------------------------------------------+
+! --------------------------------------------------------------------------------+
+
+*background: #FAFAFA
+*foreground: #383A42
+*cursorColor:#383A42
+
+! Black
+*color0:     #383A42
+*color8:     #383A42
+
+! Red
+*color1:     #E45649
+*color9:     #E45649
+
+! Green
+*color2:     #50A14F
+*color10:    #50A14F
+
+! Yellow
+*color3:     #C18401
+*color11:    #C18401
+
+! Blue
+*color4:     #0184BC
+*color12:    #0184BC
+
+! Magenta
+*color5:     #A626A4
+*color13:    #A626A4
+
+! Cyan
+*color6:     #0997B3
+*color14:    #0997B3
+
+! White
+*color7:     #909090
+*color15:    #909090
+

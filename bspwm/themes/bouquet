@@ -1,0 +1,45 @@
+! --------------------------------------------------------------------------------+
+! -------------------------------------------------+
+! @author: Alpha Vylly (AlphaLawless)              |
+! (C) 2020-2021 Aditya Shakya (GNU-GPL3)           |
+!                                                  |
+! Bouquet colors Schemes resources                 |
+! -------------------------------------------------+
+! --------------------------------------------------------------------------------+
+
+*background: #191d27
+*foreground: #767d8a
+*cursorColor:#767D8A
+
+! Black
+*color0:     #27292d
+*color8:     #3b3d41
+
+! Red
+*color1:     #ec7875
+*color9:     #fb8784
+
+! Green
+*color2:     #61c766
+*color10:    #70d675
+
+! Yellow
+*color3:     #fdd835
+*color11:    #ffe744
+
+! Blue
+*color4:     #42a5f5
+*color12:    #51b4ff
+
+! Magenta
+*color5:     #ba68c8
+*color13:    #c979d7
+
+! Cyan
+*color6:     #4dd0e1
+*color14:    #5cdff0
+
+! White
+*color7:     #d8d8d8
+*color15:    #fdf6e3
+

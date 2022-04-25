@@ -1,0 +1,45 @@
+! --------------------------------------------------------------------------------+
+! -------------------------------------------------+
+! @author: Alpha Vylly (AlphaLawless)              |
+! (C) 2020-2021 Aditya Shakya (GNU-GPL3)           |
+!                                                  |
+! Spark colors Schemes resources                   |
+! -------------------------------------------------+
+! --------------------------------------------------------------------------------+
+
+*background: #1E2541
+*foreground: #EEFFFF
+*cursorColor:#EEFFFF
+
+! Black
+*color0:     #323955
+*color8:     #354274
+
+! Red
+*color1:     #F0719B
+*color9:     #F02E6E
+
+! Green
+*color2:     #5AF7B0
+*color10:    #2CE592
+
+! Yellow
+*color3:     #FFA56B
+*color11:    #FF8537
+
+! Blue
+*color4:     #57C7FF
+*color12:    #1DA0E2
+
+! Magenta
+*color5:     #C792EA
+*color13:    #A742EA
+
+! Cyan
+*color6:     #89DDFF
+*color14:    #47BAE8
+
+! White
+*color7:     #EEFFFF
+*color15:    #DEE6E7
+

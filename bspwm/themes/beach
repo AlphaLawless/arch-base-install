@@ -1,0 +1,45 @@
+! --------------------------------------------------------------------------------+
+! -------------------------------------------------+
+! @author: Alpha Vylly (AlphaLawless)              |
+! (C) 2020-2021 Aditya Shakya (GNU-GPL3)           |
+!                                                  |
+! Beach colors Schemes resources                   |
+! -------------------------------------------------+
+! --------------------------------------------------------------------------------+
+
+*background: #141c21
+*foreground: #93a1a1
+*cursorColor:#93A1A1
+
+! Black
+*color0:     #263640
+*color8:     #4a697d
+
+! Red
+*color1:     #d12f2c
+*color9:     #fa3935
+
+! Green
+*color2:     #819400
+*color10:    #a4bd00
+
+! Yellow
+*color3:     #b08500
+*color11:    #d9a400
+
+! Blue
+*color4:     #2587cc
+*color12:    #2ca2f5
+
+! Magenta
+*color5:     #696ebf
+*color13:    #8086e8
+
+! Cyan
+*color6:     #289c93
+*color14:    #33c5ba
+
+! White
+*color7:     #bfbaac
+*color15:    #fdf6e3
+
