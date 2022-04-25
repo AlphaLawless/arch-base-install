@@ -1,17 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Options
-# Choose whether or not a particular package. Just toggle between TRUE or FALSE.
-# ----------------------+
-# [DISCLAIMER] About Ly!|
-# ----------------------+
-# It seems that Ly Display Manager doesn't work so well with BSPWM, but there are ways to make it run. If you know something more concrete could be adding.
-install_ly=false
+# Prod
+
 install_lightdm=true
-aur_paru=true
 
 # Dir variables
-DIR=`pwd`
 _site="https://github.com/alphalawless"
 repo="arch-base-install/tree/main/wallpapers"
 
@@ -19,61 +12,51 @@ sudo timedatectl set-ntp true
 sudo hwclock --systohc
 # sudo reflector -c Brazil -a 12 --sort rate --save /etc/pacman.d/mirrorlist
 
-sudo pacman -Syyu
+echo -e "\e[0;32mUpdating System\e[0m"
+sudo pacman -Syu
 
-sudo firewall-cmd --add-port=1025-65535/tcp --permanent
-sudo firewall-cmd --add-port=1025-65535/udp --permanent
-sudo firewall-cmd --reload
+clear
 
-if [[ $aur_paru = true ]]; then
-  cd /tmp
-  git clone https://aur.archlinux.org/paru-bin.git
-  cd paru-bin/;makepkg -si --noconfirm
-  echo -e "\e[1;32m[*] INSTALLING POLYBAR & DEPENDENCIES...\e[0m"
-  paru -S --noconfirm polybar
-  paru -S --noconfirm ttf-iosevka
-  paru -S --noconfirm ttf-icomoon-feather
-  sudo pacman -S --noconfirm python-pywal calc
+if [[ `whereis firewall-cmd` ]]; then
+    echo -e "\e[0;32mFirewall - Add ports tcp and upd\e[0m"
+    sudo firewall-cmd --add-port=1025-65535/tcp --permanent
+    sudo firewall-cmd --add-port=1025-65535/udp --permanent
+    sudo firewall-cmd --reload
 fi
+
+install_paru() {
+    echo -e "\e[0;32mDo you want install AUR Helper Paru? [Y/n]\e[0m"
+    read res
+    if [[ ${res,,[A-Z]} == "y" ]]; then
+        cd /tmp
+        git clone https://aur.archlinux.org/paru-bin.git
+        cd paru-bin/;makepkg -si --noconfirm
+
+        echo -e "\e[0;32m[*] Install Polybar!\e[0m"
+        paru -S --noconfirm polybar ttf-iosevka ttf-icomoon-feather
+        echo -e "\e[0;32m[*] Install ksuperkey!\e[0m"
+        paru -S --noconfirm ksuperkey
+    else
+        return 0
+    fi
+}
+install_paru
 
 echo -e "\e[1;32m[!] MAIN PACKAGES...\e[0m"
 
-sudo pacman -S --noconfirm xorg bspwm sxhkd dunst rofi dmenu firefox neofetch maim picom unclutter feh cronie thunar arandr pulseaudio-alsa pavucontrol arc-gtk-theme arc-icon-theme vlc xclip pacman-contrib xsettingsd
+sudo pacman -S --noconfirm xorg bspwm sxhkd dunst alacritty rofi dmenu xfce4-power-manager gpick firefox min neofetch maim picom unclutter feh cronie thunar arandr pulseaudio-alsa pavucontrol arc-gtk-theme arc-icon-theme vlc xclip pacman-contrib xsettingsd
 
-# Install any terminal
-terminals() {
-    echo -e "\e[1;32mWhich terminal emulator do you want install? \e[0m\n"
-    echo -e "\e[1;32m  [1] Kitty \e[0m"
-    echo -e "\e[1;32m  [2] Alacritty - Recommended \e[0m\n\n"
-    echo -e "\e[1;32mchoice one: \e[0m"
-    read reply
-    if [[ $reply == "1" ]]; then
-        echo -e "\e[0;32m* Install Kitty... \e[0m"
-        sudo pacman -S --noconfirm kitty
-        sed -i "s/term/kitty/" "$DIR"/sxhkdrc
-        cp -r "$DIR"/kitty/ ~/.config/
-    elif [[ $reply == "2" ]]; then
-        echo -e "\e[0;32m Install Alacritty... \e[0m"
-        sudo pacman -S --noconfirm alacritty
-        sed -i "s/term/alacritty/" "$DIR"/sxhkdrc
-        cp -r "$DIR"/alacritty/ ~/.config/
+install_synaptic() {
+    echo -e "\e[0;32mYou are on a laptop to install input synaptics? [Y/n]\e[0m"
+    read response
+    if [[ ${response,,[A-Z]} == "y" ]]; then
+        sudo pacman -S --noconfirm xf86-input-synaptics
+        sudo mv "$DIR"/70-synaptics.conf /etc/X11/xorg.conf.d/
     else
-        echo -e "\e[0;31m* Invalid Option! \e[0m\n"
-        terminals
+        return 0
     fi
 }
-terminals
-
-# Install synaptic for touchpad
-echo -e "\e[0;32mYou are on a laptop to install input synaptics? [Y/n]\e[0m"
-read response
-
-if [[ ${response,,[A-Z]} == "y" ]]; then
-    sudo pacman -S --noconfirm xf86-input-synaptics
-    sudo mv "$DIR"/70-synaptics.conf /etc/X11/xorg.conf.d/
-else
-    return 0
-fi
+install_synaptic
 
 # Generate Keyboard.conf
 echo -e "\e[0;32mEnter with the layout of keyboard, e.g. us | br | ch ... \e[0m"
@@ -90,16 +73,10 @@ EndSection
 EOF
 sudo cp ./temp /etc/X11/xorg.conf.d/00-keyboard.conf; sudo rm ./temp
 
-if [[ $install_ly = true ]]; then
-  cd /tmp
-  git clone https://aur.archlinux.org/ly
-  cd ly;makepkg -si --noconfirm
-  sudo systemctl enable ly.service
-fi
-
 if [[ $install_lightdm = true ]]; then
     sudo pacman -S --noconfirm lightdm wget
     sudo systemctl enable lightdm
+
     lightdm_install() {
     echo -e "\e[0;32mDo you want to install in lightdm:\e[0m\n"
     echo -e "\e[0;32m [1] webkit2 theme\e[0m\n"
@@ -136,13 +113,62 @@ echo -e "\e[1;32m[*] INSTALLING FONTS...\e[0m"
 
 sudo pacman -S --noconfirm dina-font tamsyn-font ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid gnu-free-fonts ttf-ibm-plex ttf-liberation ttf-linux-libertine noto-fonts ttf-roboto tex-gyre-fonts ttf-ubuntu-font-family ttf-anonymous-pro ttf-cascadia-code ttf-fantasque-sans-mono ttf-fira-mono ttf-hack ttf-fira-code ttf-inconsolata ttf-jetbrains-mono ttf-monofur adobe-source-code-pro-fonts cantarell-fonts inter-font ttf-opensans gentium-plus-font ttf-junicode adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts noto-fonts-cjk noto-fonts-emoji ttf-font-awesome awesome-terminal-fonts
 
-mkdir -p ~/.config/{bspwm,sxhkd,dunst,picom}
+install_bspwm() {
+    local _CONFIGDIR="$HOME"/.config
+    local _BSPWMDIR=${_CONFIGDIR}/bspwm
+    local _SXHKDDIR=${_CONFIGDIR}/sxhkd
 
-echo -e "\e[1;32m[*] INSTALL AND MOVING FILES...\e[0m"
-install -Dm 755 "$DIR"/bspwmrc ~/.config/bspwm/bspwmrc
-install -Dm 644 "$DIR"/sxhkdrc ~/.config/sxhkd/sxhkdrc
-cp -r "$DIR"/dunst/*           ~/.config/dunst
+    mkdir -p "$_BSPWMDIR" && mkdir -p "$_SXHKDDIR"
 
-sudo cp -r /arch-base-install/wallpapers/ "$HOME"/wallpapers
+    install -Dm 755 `pwd`/.fehbg       "$HOME"
+    install -Dm 644 `pwd`/.Xresources  "$HOME"
+    install -Dm 644 `pwd`/.xsettingsd  "$HOME"
+
+    cp -r `pwd`/.Xresources.d          "$HOME"
+
+    cp -r `pwd`/networkmanager-dmenu   "$HOME"
+
+    cp -r `pwd`/alacritty              "$_BSPWMDIR"
+    cp -r `pwd`/polybar                "$_BSPWMDIR"
+    cp -r `pwd`/rofi                   "$_BSPWMDIR"
+    cp -r `pwd`/themes                 "$_BSPWMDIR"
+    cp -r `pwd`/bin                    "$_BSPWMDIR"
+    cp -r `pwd`/dunstrc                "$_BSPWMDIR"
+    cp -r `pwd`/picom.conf             "$_BSPWMDIR"
+
+    chmod +x "$_BSPWMDIR"/bin/*
+    chmod +x "$_BSPWMDIR"/rofi/bin/*
+    chmod +x "$_BSPWMDIR"/themes/set-theme
+
+    install -Dm 755 `pwd`/bspwmrc      "$_BSPWMDIR"/bspwmrc
+    install -Dm 644 `pwd`/dunstrc      "$_BSPWMDIR"/dunstrc
+    install -Dm 644 `pwd`/picom.conf   "$_BSPWMDIR"/picom.conf
+
+    install -Dm 644 `pwd`/sxhkdrc      "$_SXHKDDIR"
+}
+install_bspwm
+
+install_dependences() {
+    echo -e "\e[0;32mInstall wallpapers\e[0m"
+    git clone https://github.com/AA-Linux/aa-wallpapers /tmp/wallpapers
+    cd /tmp/wallpapers ; bash install.sh
+
+    echo -e "\e[0;32mInstall Thunar Config\e[0m"
+    git clone https://github.com/AA-Linux/aa-thunar /tmp/thunar
+    cd /tmp/thunar ; bash install.sh
+
+    echo -e "\e[0;32mInstall scripts\e[0m"
+    git clone https://github.com/AlphaLawless/scripts /tmp/scripts
+    cd /tmp/scripts ; chmod +x * ; sudo rsync -av --exclude=".*" /tmp/scripts/* /usr/local/bin
+
+    echo -e "\e[0;32mInstall Archcraft workers\e[0m"
+    git clone https://github.com/AA-Linux/aa-archcraft /tmp/archcraft
+    cd /tmp/archcraft ; bash install.sh
+
+    echo -e "\e[0;32mInstall HTOP\e[0m"
+    git clone https://github.com/AA-Linux/aa-htop /tmp/htop
+    cd /tmp/htop ; bash install.sh
+}
+install_dependences
 
 echo -e "\e[1;32m* DONE! CHANGE NECESSARY FILES BEFORE REBOOT\e[0m\n"
