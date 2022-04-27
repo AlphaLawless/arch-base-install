@@ -119,7 +119,11 @@ install_bspwm() {
     local _BSPWMDIR=${_CONFIGDIR}/bspwm
     local _SXHKDDIR=${_CONFIGDIR}/sxhkd
 
+    echo -e "\e[0;32m[*] Create bspwm and sxhkd folder.\e[0m\n"
+
     mkdir -p "$_BSPWMDIR" && mkdir -p "$_SXHKDDIR"
+
+    echo -e "\e[0;32m[*] Install fehbg, Xresources and xsettingsd\e[0m\n"
 
     install -Dm 755 `pwd`/.fehbg       "$HOME"/.fehbg
     install -Dm 644 `pwd`/.Xresources  "$HOME"/.Xresources
@@ -127,40 +131,39 @@ install_bspwm() {
 
     cp -r `pwd`/.Xresources.d          "$HOME"/.Xresources.d
 
+    echo -e "\e[0;32m[*] Install network manager in .config\e[0m\n"
+
     cp -r `pwd`/networkmanager-dmenu   "$HOME"/.config/networkmanager-dmenu
+
+    echo -e "\e[0;32mCopy files for bspwm folder in .config\e[0m\n"
 
     cp -r `pwd`/alacritty              "$_BSPWMDIR"/alacritty
     cp -r `pwd`/polybar                "$_BSPWMDIR"/polybar
     cp -r `pwd`/rofi                   "$_BSPWMDIR"/rofi
     cp -r `pwd`/themes                 "$_BSPWMDIR"/themes
     cp -r `pwd`/bin                    "$_BSPWMDIR"/bin
-    cp -r `pwd`/dunstrc                "$_BSPWMDIR"/dunstrc
-    cp -r `pwd`/picom.conf             "$_BSPWMDIR"/picom.conf
+
+    echo -e "\e[0;32mEnable binaries for bspwm and rofi\e[0m"
 
     chmod +x "$_BSPWMDIR"/bin/*
     chmod +x "$_BSPWMDIR"/rofi/bin/*
     chmod +x "$_BSPWMDIR"/themes/set-theme
 
+    echo -e "\e[0;32mInstall bspwmrc, dunstrc and picom\e[0m"
+
     install -Dm 755 `pwd`/bspwmrc      "$_BSPWMDIR"/bspwmrc
     install -Dm 644 `pwd`/dunstrc      "$_BSPWMDIR"/dunstrc
     install -Dm 644 `pwd`/picom.conf   "$_BSPWMDIR"/picom.conf
 
+    echo -e "\e[0;32mCopy sxhkdrc\e[0m"
+
     install -Dm 644 `pwd`/sxhkdrc      "$_SXHKDDIR"/sxhkdrc
 }
-install_bspwm
 
-install_dependences() {
+install_dependencies() {
     echo -e "\e[0;32mInstall Wallpapers\e[0m"
     git clone https://github.com/AA-Linux/aa-wallpapers /tmp/wallpapers
     cd /tmp/wallpapers ; bash install.sh
-
-    echo -e "\e[0;32mInstall Thunar Config\e[0m"
-    git clone https://github.com/AA-Linux/aa-thunar /tmp/thunar
-    cd /tmp/thunar ; bash install.sh
-
-    echo -e "\e[0;32mInstall HTOP\e[0m"
-    git clone https://github.com/AA-Linux/aa-htop /tmp/htop
-    cd /tmp/htop ; bash install.sh
 
     echo -e "\e[0;32mInstall scripts\e[0m"
     git clone https://github.com/AlphaLawless/scripts /tmp/scripts
@@ -178,14 +181,11 @@ install_dependences() {
     git clone https://github.com/AA-Linux/aa-gtk /tmp/gtk
     cd /tmp/gtk ; bash install.sh
 
-    echo -e "\e[0;32mInstall Viewnior\e[0m"
-    git clone https://github.com/AA-Linux/aa-viewnior /tmp/viewnior
-    cd /tmp/viewnior ; bash install.sh
-
     echo -e "\e[0;32mInstall Cursors\e[0m"
     git clone https://github.com/AA-Linux/aa-cursors /tmp/cursors
     cd /tmp/cursors ; bash install.sh
 }
-install_dependences
+install_bspwm
+install_dependencies
 
 echo -e "\e[1;32m* DONE! CHANGE NECESSARY FILES BEFORE REBOOT\e[0m\n"
